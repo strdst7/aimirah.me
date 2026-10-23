@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/dev",
+      "destination": "https://aimirah-mi4.netlify.app/",
+      "permanent": false
+    }
+  ]
+}
