@@ -113,6 +113,43 @@ export default function IndexSection() {
         004 pairs — more in the pipeline
         <span className="ml-2 inline-block h-1.5 w-1.5 animate-blink rounded-full bg-signal align-middle" />
       </p>
+
+      <div className="mt-24 border-t border-bone/10 pt-12 md:mt-36">
+        <h3 className="font-display text-4xl uppercase text-bone md:text-6xl">
+          Standalone projects
+        </h3>
+        <p className="mt-3 max-w-xl font-sans text-sm text-bone/70">
+          Separate sites from the kdmirah lab. Each opens its own deployed project.
+        </p>
+        <ul className="mt-10 border-t border-bone/10">
+          <li className="border-b border-bone/10">
+            <a
+              href="https://clone-string-tune-website-gold.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-5 py-6 text-bone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal md:gap-10"
+            >
+              <span className="font-mono text-xs text-signal">01</span>
+              <span className="font-display text-2xl uppercase group-hover:text-signal md:text-4xl">MI4Inc. Motion Study</span>
+              <span className="sr-only">(opens in a new tab)</span>
+              <ArrowUpRight size={20} aria-hidden className="ml-auto shrink-0" />
+            </a>
+          </li>
+          <li className="border-b border-bone/10">
+            <a
+              href="https://aimirah-mi4.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-5 py-6 text-bone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal md:gap-10"
+            >
+              <span className="font-mono text-xs text-signal">02</span>
+              <span className="font-display text-2xl uppercase group-hover:text-signal md:text-4xl">Aimirah Component Showcase</span>
+              <span className="sr-only">(opens in a new tab)</span>
+              <ArrowUpRight size={20} aria-hidden className="ml-auto shrink-0" />
+            </a>
+          </li>
+        </ul>
+      </div>
     </section>
   );
 }
