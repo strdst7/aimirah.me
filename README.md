@@ -95,7 +95,7 @@ The apps have separate lockfiles. Run `npm ci` inside each app before building i
 
 ## Deployment
 
-The current `aimirah.me` domain serves the Digital Inspiration Lab through Vercel. The MI4Inc. study runs on a separate Vercel project at [clone-string-tune-website-gold.vercel.app](https://clone-string-tune-website-gold.vercel.app/). A `public/CNAME` file also exists in the lab app, but it does not establish the current hosting provider. To deploy either app elsewhere, set the project root to its app directory, run `npm ci && npm run build`, and serve `dist/`.
+The current `aimirah.me` domain serves the Digital Inspiration Lab through Vercel. The MI4Inc. study runs on a separate Vercel project at [clone-string-tune-website-gold.vercel.app](https://clone-string-tune-website-gold.vercel.app/). A `public/CNAME` file also exists in the lab app, but it does not establish the current hosting provider. To deploy either app elsewhere, set the project root to its app directory. Run `npm ci && npm run build`, then serve `dist/`.
 
 ## Contributions and license
 
