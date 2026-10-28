@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f4f1e9;
+  --fg: #121313;
+  --card: #fbfaf6;
+  --panel: #f8f6ef;
+  --muted: #666962;
+  --soft: #ebe7de;
+  --line: rgba(18, 19, 19, 0.1);
+  --line-strong: rgba(18, 19, 19, 0.16);
+  --thumb: #1b1c1c;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #11110f;
+  --fg: #f4f1e9;
+  --card: #1b1c1c;
+  --panel: #1b1b18;
+  --muted: #a7aaa4;
+  --soft: #252727;
+  --line: rgba(244, 241, 233, 0.13);
+  --line-strong: rgba(244, 241, 233, 0.22);
+  --thumb: #1b1c1c;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-brand: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-card: var(--card);
+  --color-panel: var(--panel);
+  --color-muted: var(--muted);
+  --color-soft: var(--soft);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-thumb: var(--thumb);
+  --color-lime: #ff4f36;
+  --color-ink: #121313;
+  --color-cream: #f4f1e9;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-brand);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: #ff4f36;
+    color: #121313;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  button,
+  a,
+  input,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+.thin-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* subtle paper grain used behind the hero */
+.paper-grain {
+  background-image: radial-gradient(rgba(18, 19, 19, 0.055) 0.6px, transparent 0.6px);
+  background-size: 14px 14px;
+}
+.dark .paper-grain {
+  background-image: radial-gradient(rgba(244, 241, 233, 0.06) 0.6px, transparent 0.6px);
+}
+
+.hero-glow {
+  background:
+    radial-gradient(58% 62% at 50% 8%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(32% 50% at 82% 30%, rgba(255, 79, 54, 0.22) 0%, rgba(255, 79, 54, 0) 72%);
+}
+.dark .hero-glow {
+  background:
+    radial-gradient(58% 62% at 50% 8%, rgba(255, 79, 54, 0.1) 0%, rgba(255, 79, 54, 0) 70%),
+    radial-gradient(32% 50% at 82% 30%, rgba(255, 79, 54, 0.08) 0%, rgba(255, 79, 54, 0) 72%);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-scale-in {
+  animation: scale-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes promo-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.promo-progress {
+  animation: promo-progress 5.2s linear forwards;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-scale-in,
+  .promo-progress {
+    animation: none;
+  }
+}
