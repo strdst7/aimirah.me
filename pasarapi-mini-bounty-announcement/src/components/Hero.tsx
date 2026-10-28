@@ -1,4 +1,4 @@
-import { ChevronDown, Database, Radio, Zap } from 'lucide-react';
+import { ChevronDown, Database, Heart, Radio, Zap } from 'lucide-react';
 import { useKLTime } from '../hooks/useFx';
 import { Reveal } from './ui';
 
@@ -15,12 +15,15 @@ export function Hero() {
 
       <div className="relative max-w-6xl mx-auto px-5 md:px-8 pt-32 md:pt-40 pb-16 md:pb-24">
         <Reveal>
-          <div className="flex flex-wrap items-center gap-3 mb-8">
+            <div className="flex flex-wrap items-center gap-3 mb-8">
             <span className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase text-neon-amber border border-neon-amber/30 rounded-full px-3.5 py-1.5 bg-neon-amber/5">
               <Zap className="w-3 h-3" /> KRACKED DEVS × PASARAPI
             </span>
-            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">
+            <span className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">
               {date} · KUALA LUMPUR
+            </span>
+            <span className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase text-neon-pink border border-neon-pink/30 rounded-full px-3.5 py-1.5 bg-neon-pink/5">
+              <Heart className="w-3 h-3 fill-neon-pink" /> kdmirah
             </span>
           </div>
         </Reveal>

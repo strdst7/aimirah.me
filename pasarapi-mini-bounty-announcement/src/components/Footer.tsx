@@ -59,11 +59,19 @@ export function Footer() {
 
         <Reveal delay={200}>
           <div className="mt-14 pt-6 border-t border-line flex flex-wrap items-center justify-between gap-4">
-            <p className="font-mono text-[10px] tracking-[0.2em] text-mute inline-flex items-center gap-2">
-              BUILT WITH <Heart className="w-3 h-3 text-neon-pink fill-neon-pink" /> + REACT + RECHARTS
-              <span className="text-white/20">·</span>
-              <span className="text-white/60">MALAYSIA BOLEH</span>
-            </p>
+            <div className="inline-flex items-center gap-3 group cursor-default">
+              <span className="font-mono text-[10px] tracking-[0.3em] text-mute uppercase">
+                Built by
+              </span>
+              <span className="font-display text-xl text-white transition-all duration-300 group-hover:text-neon-pink glow-pink [text-shadow:0_0_12px_rgba(255,176,32,0.6)]">
+                kdmirah
+              </span>
+              <span className="h-4 w-px bg-white/15 group-hover:bg-neon-pink/50 transition-colors" />
+              <Heart className="w-3.5 h-3.5 text-neon-pink fill-neon-pink animate-pulse" />
+              <span className="font-mono text-[9px] tracking-[0.25em] text-mute">
+                FOR THE PASAR
+              </span>
+            </div>
             <a
               href="#top"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-mute hover:text-neon-green transition-colors"
