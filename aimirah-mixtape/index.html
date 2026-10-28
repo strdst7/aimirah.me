@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aimirah.mixtape — 1,910+ Agents, Commands, Skills &amp; MCP Integrations</title>
+    <meta
+      name="description"
+      content="aimirah.mixtape: Browse, mix, and install 1,910+ pre-built Claude Code components — AI agents, slash commands, skills, MCP servers, hooks, mods, and settings. Free open-source CLI tool."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('aimirah-theme');
+          // Default = silver faceplate ("light"). 'dark' = black-anodised faceplate.
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'light';
+          var html = document.documentElement;
+          html.classList.remove('light', 'dark');
+          html.classList.add(theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[var(--color-surface-0)] text-[var(--color-text-primary)] antialiased transition-colors duration-200 overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
