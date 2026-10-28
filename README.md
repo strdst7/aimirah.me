@@ -1,52 +1,40 @@
-# aimirah.me
+# PASAR.DATA
 
-**kdmirah — Digital Inspiration Lab.** Live at [aimirah.me](https://aimirah.me).
+PASAR.DATA is a standalone Malaysia open-data dashboard for visitors exploring public datasets. [Open the site](https://pasarapi-mini-bounty-announcement.vercel.app).
 
-A dark, editorial single-page site studying the space between what we see and what we make: four experiments, each pairing a raw source image with the work it provoked, compared through a draggable seam.
+## What it shows
 
-## Highlights
+- Fuel prices, exchange rates, births, population, and household income.
+- A searchable API directory with country and access-tier filters.
+- A bundled directory snapshot when the PasarAPI catalogue is unavailable.
 
-- Draggable before/after "seam" comparisons for each experiment
-- Lenis smooth scrolling with scroll-driven reveals
-- Word-by-word illuminated manifesto, infinite marquees, animated starfield
-- Custom cursor, preloader, and film-grain overlay
-- Typography: Anton, Space Grotesk, Space Mono
+The data panels fetch datasets from [data.gov.my](https://api.data.gov.my/data-catalogue). The directory fetches `https://pasarapi.xyz/api/catalogue`. Data availability depends on those services and browser access.
 
 ## Stack
 
-- [React 19](https://react.dev) + TypeScript
-- [Vite 7](https://vite.dev) with `vite-plugin-singlefile` — production builds inline into a single `index.html`
-- [Tailwind CSS 4](https://tailwindcss.com) via `@tailwindcss/vite`
-- [Lenis](https://github.com/darkroomengineering/lenis) smooth scroll, `lucide-react`, `clsx` + `tailwind-merge`
+React 19, TypeScript 5.9, Vite 7, Tailwind CSS 4, Recharts, and Lucide React. `vite-plugin-singlefile` inlines the production bundle into `dist/index.html`.
 
-## Getting started
+## Run locally
+
+From the repository root:
 
 ```bash
-cd clone-reframed-online-website
-npm install
-npm run dev      # start the dev server
-npm run build    # single-file production build
-npm run preview  # preview the production build
+cd pasarapi-mini-bounty-announcement
+npm ci
+npm run dev
 ```
 
-## Structure
+Run `npm run build` for production output and `npm run preview` to serve it locally.
 
-```
-clone-reframed-online-website/
-├── src/
-│   ├── components/   # Hero, Nav, Manifesto, ExperimentSection, Marquee, ...
-│   ├── hooks/        # useReveal — scroll-triggered reveal logic
-│   ├── lib/          # data.ts (experiment content), scroll.ts (Lenis setup)
-│   └── utils/        # cn.ts — className helper
-└── public/           # images, CNAME, sitemap.xml, robots.txt, webmanifest
-```
+## Source and deployment
 
-Site content (the four experiments) lives in [`src/lib/data.ts`](clone-reframed-online-website/src/lib/data.ts).
+- `src/components/`: dashboard sections and directory UI.
+- `src/lib/api.ts`: fetch helpers, timeouts, and React data state.
+- `src/data/fallbackApis.ts`: bundled API directory snapshot.
+- Vercel project: `pasarapi-mini-bounty-announcement`, with `pasarapi-mini-bounty-announcement` as its root directory.
 
-## Deployment
-
-Hosted on GitHub Pages with a custom domain — `public/CNAME` points to `aimirah.me`.
+This feature branch contains the app. It does not change the `aimirah.me` homepage on `main`.
 
 ## License
 
-[GPL-3.0](LICENSE)
+[GPL-3.0](LICENSE).
