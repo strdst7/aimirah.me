@@ -1,52 +1,40 @@
-# aimirah.me
+# kdmirah.studio
 
-**kdmirah — Digital Inspiration Lab.** Live at [aimirah.me](https://aimirah.me).
+kdmirah.studio is a standalone video-and-prompt archive for people exploring Claude Opus 5.5 creations. [Open the site](https://kdmirah-studio.vercel.app).
 
-A dark, editorial single-page site studying the space between what we see and what we make: four experiments, each pairing a raw source image with the work it provoked, compared through a draggable seam.
+## What it does
 
-## Highlights
+- Browse 418 entries by category, creator, or prompt search.
+- Compare original videos with remakes and copy creator prompts.
+- Switch between light and dark themes.
 
-- Draggable before/after "seam" comparisons for each experiment
-- Lenis smooth scrolling with scroll-driven reveals
-- Word-by-word illuminated manifesto, infinite marquees, animated starfield
-- Custom cursor, preloader, and film-grain overlay
-- Typography: Anton, Space Grotesk, Space Mono
+The app bundles its entries in `src/data/videos.json`. Video and image URLs point to external media at `media.skillry.dev`. Playback needs access to that host.
 
 ## Stack
 
-- [React 19](https://react.dev) + TypeScript
-- [Vite 7](https://vite.dev) with `vite-plugin-singlefile` — production builds inline into a single `index.html`
-- [Tailwind CSS 4](https://tailwindcss.com) via `@tailwindcss/vite`
-- [Lenis](https://github.com/darkroomengineering/lenis) smooth scroll, `lucide-react`, `clsx` + `tailwind-merge`
+React 19, TypeScript 5.9, Vite 7, and Tailwind CSS 4. `vite-plugin-singlefile` inlines the production bundle into `dist/index.html`.
 
-## Getting started
+## Run locally
+
+From the repository root:
 
 ```bash
-cd clone-reframed-online-website
-npm install
-npm run dev      # start the dev server
-npm run build    # single-file production build
-npm run preview  # preview the production build
+cd kdmirah-studio
+npm ci
+npm run dev
 ```
 
-## Structure
+Run `npm run build` for production output and `npm run preview` to serve it locally.
 
-```
-clone-reframed-online-website/
-├── src/
-│   ├── components/   # Hero, Nav, Manifesto, ExperimentSection, Marquee, ...
-│   ├── hooks/        # useReveal — scroll-triggered reveal logic
-│   ├── lib/          # data.ts (experiment content), scroll.ts (Lenis setup)
-│   └── utils/        # cn.ts — className helper
-└── public/           # images, CNAME, sitemap.xml, robots.txt, webmanifest
-```
+## Source and deployment
 
-Site content (the four experiments) lives in [`src/lib/data.ts`](clone-reframed-online-website/src/lib/data.ts).
+- `src/data/videos.json`: video metadata, prompts, and media URLs.
+- `src/lib/content.ts`: archive data, categories, and sorting.
+- `src/components/`: gallery, search, video modal, and site UI.
+- Vercel project: `kdmirah-studio`, with `kdmirah-studio` as its root directory.
 
-## Deployment
-
-Hosted on GitHub Pages with a custom domain — `public/CNAME` points to `aimirah.me`.
+This feature branch contains the app. It does not change the `aimirah.me` homepage on `main`.
 
 ## License
 
-[GPL-3.0](LICENSE)
+[GPL-3.0](LICENSE). External video and image assets retain their own rights.
