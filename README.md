@@ -1,52 +1,41 @@
-# aimirah.me
+# aimirah.mixtape
 
-**kdmirah — Digital Inspiration Lab.** Live at [aimirah.me](https://aimirah.me).
+aimirah.mixtape is a standalone catalogue and stack builder for people browsing Claude Code components. [Open the site](https://aimirah-mixtape.vercel.app).
 
-A dark, editorial single-page site studying the space between what we see and what we make: four experiments, each pairing a raw source image with the work it provoked, compared through a draggable seam.
+## What it does
 
-## Highlights
+- Browse agents, commands, skills, MCP integrations, hooks, and other components.
+- Search the bundled catalogue and inspect component details.
+- Assemble stacks and collections, then copy install commands.
+- Explore bundled plugin, trending, and job views.
 
-- Draggable before/after "seam" comparisons for each experiment
-- Lenis smooth scrolling with scroll-driven reveals
-- Word-by-word illuminated manifesto, infinite marquees, animated starfield
-- Custom cursor, preloader, and film-grain overlay
-- Typography: Anton, Space Grotesk, Space Mono
+The app reads `src/data/catalogSnapshot.json` locally. Cart, collections, and theme use browser `localStorage`, so they stay on that browser. Some component file previews use generated text when the snapshot lacks source content. Review source and install commands before running them.
 
 ## Stack
 
-- [React 19](https://react.dev) + TypeScript
-- [Vite 7](https://vite.dev) with `vite-plugin-singlefile` — production builds inline into a single `index.html`
-- [Tailwind CSS 4](https://tailwindcss.com) via `@tailwindcss/vite`
-- [Lenis](https://github.com/darkroomengineering/lenis) smooth scroll, `lucide-react`, `clsx` + `tailwind-merge`
+React 19, TypeScript 5.9, Vite 7, and Tailwind CSS 4. `vite-plugin-singlefile` inlines the production bundle into `dist/index.html`.
 
-## Getting started
+## Run locally
+
+From the repository root:
 
 ```bash
-cd clone-reframed-online-website
-npm install
-npm run dev      # start the dev server
-npm run build    # single-file production build
-npm run preview  # preview the production build
+cd aimirah-mixtape
+npm ci
+npm run dev
 ```
 
-## Structure
+Run `npm run build` for production output and `npm run preview` to serve it locally.
 
-```
-clone-reframed-online-website/
-├── src/
-│   ├── components/   # Hero, Nav, Manifesto, ExperimentSection, Marquee, ...
-│   ├── hooks/        # useReveal — scroll-triggered reveal logic
-│   ├── lib/          # data.ts (experiment content), scroll.ts (Lenis setup)
-│   └── utils/        # cn.ts — className helper
-└── public/           # images, CNAME, sitemap.xml, robots.txt, webmanifest
-```
+## Source and deployment
 
-Site content (the four experiments) lives in [`src/lib/data.ts`](clone-reframed-online-website/src/lib/data.ts).
+- `src/data/catalogSnapshot.json`: bundled catalogue, trending, and job data.
+- `src/data/catalog.ts`: catalogue mapping and install commands.
+- `src/App.tsx`: navigation, cart, collections, and theme state.
+- Vercel project: `aimirah-mixtape`, with `aimirah-mixtape` as its root directory.
 
-## Deployment
-
-Hosted on GitHub Pages with a custom domain — `public/CNAME` points to `aimirah.me`.
+This feature branch contains the app. It does not change the `aimirah.me` homepage on `main`.
 
 ## License
 
-[GPL-3.0](LICENSE)
+[GPL-3.0](LICENSE). Review third-party component licenses before reuse.
