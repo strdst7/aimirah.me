@@ -1,4 +1,4 @@
-# aimirah.me
+# PASAR.DATA
 
 **kdmirah — Digital Inspiration Lab.** Live at [aimirah.me](https://aimirah.me).
 
