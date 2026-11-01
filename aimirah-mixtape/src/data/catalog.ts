@@ -231,17 +231,28 @@ for (const t of ALL_TYPES) {
 
 export const ALL_CATALOG_ITEMS: CatalogItem[] = ALL_TYPES.flatMap((t) => CATALOG_BY_TYPE[t]);
 
+// Derived from the rows actually shipped in catalogSnapshot.json, so on-page
+// counts can never drift from what the catalog can really browse/search.
 export const CATALOG_COUNTS: Record<ComponentTypePlural | 'plugins', number> = {
-  skills: snapshot.counts?.skills ?? 891,
-  agents: snapshot.counts?.agents ?? 422,
-  commands: snapshot.counts?.commands ?? 288,
-  settings: snapshot.counts?.settings ?? 77,
-  hooks: snapshot.counts?.hooks ?? 63,
-  mcps: snapshot.counts?.mcps ?? 107,
-  mods: snapshot.counts?.mods ?? 44,
-  loops: snapshot.counts?.loops ?? 18,
-  plugins: 12,
+  skills: CATALOG_BY_TYPE.skills.length,
+  agents: CATALOG_BY_TYPE.agents.length,
+  commands: CATALOG_BY_TYPE.commands.length,
+  settings: CATALOG_BY_TYPE.settings.length,
+  hooks: CATALOG_BY_TYPE.hooks.length,
+  mcps: CATALOG_BY_TYPE.mcps.length,
+  mods: CATALOG_BY_TYPE.mods.length,
+  loops: CATALOG_BY_TYPE.loops.length,
+  plugins: snapshot.counts?.plugins ?? 0,
 };
+
+/** Total browsable catalog size. Single source of truth for every UI claim. */
+export const CATALOG_TOTAL = ALL_TYPES.reduce(
+  (sum, t) => sum + CATALOG_BY_TYPE[t].length,
+  0
+);
+
+/** Preformatted for copy such as "350+ components". */
+export const CATALOG_TOTAL_LABEL = CATALOG_TOTAL.toLocaleString('en-US');
 
 export const PLUGIN_MARKETPLACES: PluginMarketplace[] = [
   {

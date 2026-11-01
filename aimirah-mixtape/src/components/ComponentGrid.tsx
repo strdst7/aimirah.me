@@ -3,6 +3,7 @@ import {
   buildSingleInstallCmd,
   CATALOG_BY_TYPE,
   CATALOG_COUNTS,
+  CATALOG_TOTAL_LABEL,
   CLI_PACKAGE,
   formatComponentTitle,
 } from '../data/catalog';
@@ -392,7 +393,7 @@ export const ComponentGrid: React.FC<{
           <kbd className="px-2 py-0.5 rounded bg-[var(--color-surface-2)] border border-[var(--color-border)]">
             ⌘K
           </kbd>
-          <span>to search all 1,910+ tracks</span>
+          <span>to search all {CATALOG_TOTAL_LABEL}+ tracks</span>
         </div>
       </div>
 
@@ -682,7 +683,7 @@ export const ComponentGrid: React.FC<{
           What is aimirah.mixtape?
         </h2>
         <p className="mb-2.5">
-          <strong className="text-[var(--color-text-primary)]">aimirah.mixtape</strong> is an open-source catalog and mixtape builder of 1,910+ components for Claude Code: subagents, slash commands, skills, hooks, MCP server configurations, settings, loops, and mods. Every component is a plain text file you can audit before installing, with full source available on{' '}
+          <strong className="text-[var(--color-text-primary)]">aimirah.mixtape</strong> is an open-source catalog and mixtape builder of {CATALOG_TOTAL_LABEL}+ components for Claude Code: subagents, slash commands, skills, hooks, MCP server configurations, settings, loops, and mods. Every component is a plain text file you can audit before installing, with full source available on{' '}
           <a
             href="https://github.com/aimirah/mixtape"
             target="_blank"

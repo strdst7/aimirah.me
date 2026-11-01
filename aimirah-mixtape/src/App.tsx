@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {
   ASCII_BANNER,
   CATALOG_COUNTS,
+  CATALOG_TOTAL_LABEL,
   INITIAL_COLLECTIONS,
 } from './data/catalog';
 import {
@@ -771,7 +772,7 @@ export function App() {
                           Dolby&nbsp;NR · Metal · Auto&nbsp;Reverse
                         </span>
                         <span className="hidden sm:inline-flex ml-auto">
-                          <LegendChip active>Catalog 1,910</LegendChip>
+                          <LegendChip active>Catalog {CATALOG_TOTAL_LABEL}</LegendChip>
                         </span>
                       </div>
 
@@ -971,7 +972,7 @@ export function App() {
                   </span>
                 </div>
                 <p className="legend mt-1.5" style={{ fontSize: 8.5, lineHeight: 1.7 }}>
-                  1,910+ Claude Code components · Skills · Agents · Commands · MCPs · Hooks
+                  {CATALOG_TOTAL_LABEL}+ Claude Code components · Skills · Agents · Commands · MCPs · Hooks
                 </p>
               </div>
             </div>
