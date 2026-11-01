@@ -26,7 +26,8 @@ interface Tick {
 export function Ticker() {
   const { data } = useAsyncData(async () => {
     const [fuel, fx] = await Promise.all([
-      fetchCatalogue<FuelRow>({ id: 'fuelprice', limit: 8, sort: '-date' }),
+      // Same spec as FuelSection so the shared request cache reuses one call.
+      fetchCatalogue<FuelRow>({ id: 'fuelprice', limit: 104, sort: '-date' }),
       fetchCatalogue<FxRow>({ id: 'exchangerates_daily_1200', limit: 12, sort: '-date' }),
     ]);
     return { fuel, fx };
