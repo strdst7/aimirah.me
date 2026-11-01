@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://mi4inc.com/sitemap.xml

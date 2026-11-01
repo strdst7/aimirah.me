@@ -1,0 +1,318 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #030302;
+  --bone: #daceb0;
+  --bone-hi: #f1e8d0;
+  --bone-dim: rgba(218, 206, 176, 0.6);
+  --pane: #0b0a08;
+  --pane-hi: #1a1813;
+  --k: 1;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  background: var(--ink);
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+  user-select: none;
+}
+
+::selection {
+  background: var(--bone);
+  color: var(--ink);
+}
+
+.mz {
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ————— key-cap buttons (sound toggles, HUD pills) ————— */
+@property --mza {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.mz-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(8px * var(--k));
+  background: var(--pane);
+  border: 0;
+  margin: 0;
+  padding: calc(6px * var(--k)) calc(10px * var(--k)) calc(6px * var(--k)) calc(7px * var(--k));
+  cursor: pointer;
+  font-family: inherit;
+  font-size: calc(10px * var(--k));
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--bone-hi);
+  line-height: 1.25;
+  transition: background 0.25s ease;
+}
+.mz-btn:hover,
+.mz-btn.sel {
+  background: var(--pane-hi);
+}
+.mz-btn:focus-visible {
+  outline: 1px dashed var(--bone-dim);
+  outline-offset: 2px;
+}
+
+.mz-key {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  min-width: calc(26px * var(--k));
+  height: calc(16px * var(--k));
+  padding: 0 calc(4px * var(--k));
+  box-sizing: border-box;
+  flex: none;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 16%, transparent);
+}
+.mz-key b {
+  font-weight: 400;
+  font-size: calc(9px * var(--k));
+  line-height: 1;
+}
+.mz-key i {
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--mza),
+    transparent 0 50%,
+    color-mix(in srgb, currentColor 25%, transparent) 72%,
+    currentColor 99%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: mzrun 1.8s linear infinite;
+  pointer-events: none;
+}
+@keyframes mzrun {
+  to {
+    --mza: 360deg;
+  }
+}
+.mz-key.fast i {
+  animation-duration: 0.8s;
+}
+
+/* ————— graffiti stickers ————— */
+.sticker {
+  font-family: "Sedgwick Ave Display", "Space Mono", cursive;
+  font-weight: 400;
+  color: var(--bone-hi);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  transform: rotate(var(--tilt, -2.5deg));
+  text-shadow:
+    0 0 1px var(--ink),
+    0.045em 0.045em 0 rgba(0, 0, 0, 0.85),
+    -0.015em 0 0 rgba(0, 0, 0, 0.6),
+    0 0 34px rgba(218, 206, 176, 0.12);
+  paint-order: stroke fill;
+  -webkit-text-stroke: 2px rgba(3, 3, 2, 0.55);
+  will-change: transform, opacity;
+}
+
+/* ————— overlays: grain, vignette, blink ————— */
+.fx-grain {
+  position: fixed;
+  inset: -100px;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(4) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-34px, 22px); }
+  50% { transform: translate(18px, -30px); }
+  75% { transform: translate(-22px, -14px); }
+  100% { transform: translate(0, 0); }
+}
+
+.fx-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 39;
+  background: radial-gradient(115% 90% at 50% 46%, transparent 52%, rgba(0, 0, 0, 0.55) 100%);
+}
+.fx-vignette-breath {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 39;
+  background: radial-gradient(100% 82% at 50% 50%, transparent 46%, rgba(0, 0, 0, 0.9) 100%);
+  opacity: 0;
+  animation: breathe 9s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.34; }
+}
+
+.fx-blink {
+  position: fixed;
+  inset: 0;
+  z-index: 41;
+  pointer-events: none;
+  background: #000;
+  opacity: 0;
+}
+
+/* ————— loader ————— */
+#ldr circles,
+#ldr circle {
+  fill: none;
+  stroke: var(--bone);
+  stroke-opacity: 0.09;
+  stroke-width: 0.5;
+}
+.ldr-in {
+  animation: ldrin 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes ldrin {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+.pop-in {
+  animation: popin 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes popin {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ————— title entrances ————— */
+.tl-in {
+  animation: tlin 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes tlin {
+  from {
+    opacity: 0;
+    transform: translateY(26px) rotate(var(--tilt, -2.5deg)) scale(0.94);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--tilt, -2.5deg)) scale(1);
+    filter: blur(0);
+  }
+}
+.tl-out {
+  animation: tlout 0.55s cubic-bezier(0.5, 0, 0.75, 0) both;
+}
+@keyframes tlout {
+  to {
+    opacity: 0;
+    transform: translateY(-30px) rotate(var(--tilt, -2.5deg)) scale(1.04);
+    filter: blur(8px);
+  }
+}
+
+/* ————— hint float ————— */
+.hint-float {
+  animation: hintfloat 2.6s ease-in-out infinite;
+}
+@keyframes hintfloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ————— custom cursor ————— */
+@media (pointer: fine) {
+  .cursor-none-root,
+  .cursor-none-root * {
+    cursor: none !important;
+  }
+}
+#cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+#cursor .c-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  background: var(--bone-hi);
+  border-radius: 50%;
+}
+#cursor .c-ring {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border: 1px solid var(--bone-hi);
+  border-radius: 50%;
+  opacity: 0.75;
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.28s ease;
+}
+#cursor.big .c-ring {
+  transform: scale(1.9);
+  opacity: 1;
+}
+#cursor .c-label {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bone-hi);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+#cursor.big .c-label {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-grain,
+  .fx-vignette-breath,
+  .hint-float {
+    animation: none;
+  }
+}
