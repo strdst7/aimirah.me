@@ -1,4 +1,11 @@
 node_modules/
 dist/
+build/
 .vercel/
-.env*
+.netlify/
+.env
+.env.*
+!.env.example
+*.local
+.DS_Store
+*.log
