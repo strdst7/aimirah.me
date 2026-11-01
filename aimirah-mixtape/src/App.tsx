@@ -324,6 +324,7 @@ export function App() {
       return;
     }
     const id = window.setInterval(() => {
+      if (document.visibilityState === 'hidden') return;
       setTapeCounter(Math.floor((Date.now() - counterAnchorRef.current) / 420) + 1);
     }, 420);
     return () => window.clearInterval(id);

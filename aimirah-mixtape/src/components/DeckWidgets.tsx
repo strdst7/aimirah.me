@@ -411,7 +411,12 @@ export const LegendChip: React.FC<{
 export function useVUDrive(stackCount: number) {
   const [drift, setDrift] = useState(0.14);
   useEffect(() => {
+    // Skip pointless work in background tabs, and freeze the needle for
+    // users who asked for reduced motion (CONCERNS.md #8, #18).
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
     const id = window.setInterval(() => {
+      if (document.visibilityState === 'hidden') return;
       setDrift(0.1 + Math.random() * 0.28);
     }, 620);
     return () => window.clearInterval(id);

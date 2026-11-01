@@ -53,6 +53,7 @@ export function useKLTime() {
   const [date, setDate] = useState('');
 
   useEffect(() => {
+    let id: number | undefined;
     const tick = () => {
       const d = new Date();
       setNow(
@@ -76,9 +77,29 @@ export function useKLTime() {
           .toUpperCase()
       );
     };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    // Only tick while the tab is visible (CONCERNS.md #18).
+    const start = () => {
+      tick();
+      stop();
+      id = window.setInterval(tick, 1000);
+    };
+    const stop = () => {
+      if (id !== undefined) {
+        window.clearInterval(id);
+        id = undefined;
+      }
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') stop();
+      else start();
+    };
+
+    if (document.visibilityState !== 'hidden') start();
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      stop();
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
   }, []);
 
   return { now, date };
