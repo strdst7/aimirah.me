@@ -65,8 +65,8 @@ export type ProgressMode = "stick" | "through" | "enter";
  * through — 0 when top enters bottom of vp, 1 when bottom leaves vp top
  * enter   — 0 -> 1 as element top travels from vp bottom to vp top
  */
-export function useSectionProgress(
-  ref: React.RefObject<HTMLElement | null>,
+export function useSectionProgress<T extends HTMLElement>(
+  ref: React.RefObject<T | null>,
   mode: ProgressMode = "stick",
 ) {
   const [p, setP] = useState(0);
@@ -97,6 +97,8 @@ export function useInView<T extends HTMLElement>(
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
   const once = opts?.once ?? true;
+  const threshold = opts?.threshold ?? 0.2;
+  const rootMargin = opts?.rootMargin ?? "0px 0px -8% 0px";
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -112,14 +114,13 @@ export function useInView<T extends HTMLElement>(
         });
       },
       {
-        threshold: opts?.threshold ?? 0.2,
-        rootMargin: opts?.rootMargin ?? "0px 0px -8% 0px",
+        threshold,
+        rootMargin,
       },
     );
     ob.observe(el);
     return () => ob.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [once, threshold, rootMargin]);
   return { ref, inView };
 }
 

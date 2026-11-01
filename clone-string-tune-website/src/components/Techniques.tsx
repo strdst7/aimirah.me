@@ -30,7 +30,7 @@ export function GiantWord({
   redSub?: number[];
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const p = useSectionProgress(ref as any, "through");
+  const p = useSectionProgress(ref, "through");
   const n = countChars(text);
   const lp = clamp((p - from) / (to - from));
   let i = 0;
@@ -293,7 +293,7 @@ function PrincipleItem({ item, index }: { item: Principle; index: number }) {
 /* ------------------------------------------------------------------ */
 export default function Techniques() {
   const swordRef = useRef<HTMLDivElement>(null);
-  const swordP = useSectionProgress(swordRef as any, "through");
+  const swordP = useSectionProgress(swordRef, "through");
 
   return (
     <section id="techniques" className="relative bg-[var(--c-black)]">

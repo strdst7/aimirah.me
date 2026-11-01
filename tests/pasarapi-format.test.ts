@@ -1,22 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fmtInt, fmtRate, fmtRM } from "../pasarapi-mini-bounty-announcement/src/lib/api";
-
-describe("fmtRM", () => {
-  it("formats with 2 decimals by default", () => {
-    expect(fmtRM(2.5)).toBe("2.50");
-    expect(fmtRM(0)).toBe("0.00");
-  });
-
-  it("respects a custom decimal count", () => {
-    expect(fmtRM(1.23456, 3)).toBe("1.235");
-  });
-
-  it("returns a placeholder for missing values", () => {
-    expect(fmtRM(null)).toBe("--.--");
-    expect(fmtRM(undefined)).toBe("--.--");
-    expect(fmtRM(Number.NaN)).toBe("--.--");
-  });
-});
+import { fmtInt, fmtRate } from "../pasarapi-mini-bounty-announcement/src/lib/api";
 
 describe("fmtRate", () => {
   it("scales precision down as the value shrinks", () => {

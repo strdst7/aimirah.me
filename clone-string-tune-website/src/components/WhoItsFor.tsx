@@ -61,7 +61,7 @@ function AudienceCard({
 
 export default function WhoItsFor() {
   const cardsRef = useRef<HTMLDivElement>(null);
-  const p = useSectionProgress(cardsRef as any, "through");
+  const p = useSectionProgress(cardsRef, "through");
 
   return (
     <section className="relative overflow-clip bg-[var(--c-black)] pb-[var(--h1)]">

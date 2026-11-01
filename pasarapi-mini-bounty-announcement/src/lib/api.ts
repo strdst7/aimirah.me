@@ -119,9 +119,6 @@ export function useAsyncData<T>(loader: () => Promise<T>) {
 
 /* --------------------------- formatting --------------------------- */
 
-export const fmtRM = (v: number | null | undefined, dp = 2) =>
-  v == null || Number.isNaN(v) ? '--.--' : v.toFixed(dp);
-
 export const fmtRate = (v: number | null | undefined) => {
   if (v == null || Number.isNaN(v)) return '—';
   if (v < 0.001) return v.toFixed(6);

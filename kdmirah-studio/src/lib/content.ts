@@ -157,16 +157,8 @@ export const SKILLS: Skill[] = [
 export const POPULAR_SKILLS = SKILLS.slice(0, 4);
 export const PROMO_SKILLS = [SKILLS[4], SKILLS[5], SKILLS[3], SKILLS[1]];
 
-export function skillBySlug(slug: string): Skill | undefined {
-  return SKILLS.find((s) => s.slug === slug);
-}
-
 export function profileUrl(author: string): string {
   return `https://x.com/${author.replace(/[^a-zA-Z0-9_]/g, "")}`;
-}
-
-export function initials(author: string): string {
-  return author.replace(/[^a-zA-Z0-9]/g, "").slice(0, 2).toUpperCase() || "AI";
 }
 
 export const TOOL_ABBREVIATIONS: Record<string, string> = {
