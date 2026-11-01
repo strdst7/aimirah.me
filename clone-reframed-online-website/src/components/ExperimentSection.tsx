@@ -189,6 +189,10 @@ export default function ExperimentSection({ exp }: Props) {
         <img
           src={exp.inspiration.img}
           alt={exp.inspiration.caption}
+          width={1200}
+          height={1600}
+          loading="lazy"
+          decoding="async"
           draggable={false}
           className={`absolute inset-0 h-full w-full object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
             entered ? "scale-100" : "scale-[1.08]"
@@ -205,6 +209,10 @@ export default function ExperimentSection({ exp }: Props) {
           <img
             src={exp.output.img}
             alt={exp.output.caption}
+            width={1200}
+            height={1600}
+            loading="lazy"
+            decoding="async"
             draggable={false}
             className={`absolute inset-0 h-full w-full object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
               entered ? "scale-100" : "scale-[1.08]"

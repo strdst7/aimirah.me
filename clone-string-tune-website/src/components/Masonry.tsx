@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { MousePointer2 } from "lucide-react";
 import { Chars, useInView, useRaf } from "../lib/ui";
-import atelierImg from "../assets/fidoru.jpg";
-import controlImg from "../assets/control.jpg";
-import ultraImg from "../assets/ultra.jpg";
+const atelierImg = "/images/fidoru.jpg";
+const controlImg = "/images/control.jpg";
+const ultraImg = "/images/ultra.jpg";
 
 const ROW_H = "clamp(8.5rem, 23vh, 13rem)";
 
@@ -193,6 +193,10 @@ export default function Masonry() {
               <img
                 src={atelierImg}
                 alt="Aimirah project — atelier"
+                width={1280}
+                height={640}
+                loading="lazy"
+                decoding="async"
                 className="mt-auto h-[44%] w-full rounded-[var(--m)] object-cover object-top"
                 draggable={false}
               />
@@ -272,6 +276,10 @@ export default function Masonry() {
               <img
                 src={controlImg}
                 alt="Aimirah showcase site on a phone"
+                width={2401}
+                height={2401}
+                loading="lazy"
+                decoding="async"
                 className="absolute right-0 top-0 h-full w-[50%] object-cover object-left"
                 draggable={false}
                 style={{
@@ -359,6 +367,10 @@ export default function Masonry() {
               <img
                 src={ultraImg}
                 alt="Ultra optimized — aimirah"
+                width={800}
+                height={784}
+                loading="lazy"
+                decoding="async"
                 className="mt-auto h-[42%] w-full rounded-[var(--m)] object-cover grayscale"
                 draggable={false}
               />

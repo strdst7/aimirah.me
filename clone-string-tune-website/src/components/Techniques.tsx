@@ -8,10 +8,10 @@ import {
   Star12,
   useSectionProgress,
 } from "../lib/ui";
-import techniqueImg from "../assets/technique.jpg";
-import aikaSprite from "../assets/aika.webp";
-import ojiSprite from "../assets/oji.webp";
-import flashUrl from "../assets/flash.webp";
+const techniqueImg = "/images/technique.jpg";
+const aikaSprite = "/images/aika.webp";
+const ojiSprite = "/images/oji.webp";
+const flashUrl = "/images/flash.webp";
 
 /* ------------------------------------------------------------------ */
 /*  giant word whose chars fill in with scroll progress                */
@@ -145,6 +145,10 @@ function SwordCompass({ progress }: { progress: number }) {
           <img
             src={techniqueImg}
             alt="Aimirah — the atelier"
+            width={768}
+            height={768}
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover"
             style={{ transform: `scale(1.14) translateY(${(progress - 0.5) * -8}%)` }}
             draggable={false}
@@ -229,6 +233,10 @@ function SpriteStage() {
         src={flashUrl}
         alt=""
         aria-hidden
+        width={183}
+        height={183}
+        loading="lazy"
+        decoding="async"
         className="absolute left-1/2 top-1/2 h-[150%] w-auto -translate-x-1/2 -translate-y-1/2 opacity-40 mix-blend-screen"
         style={{ animation: "pulseDot 1.6s infinite" }}
       />

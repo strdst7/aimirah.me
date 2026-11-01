@@ -64,6 +64,10 @@ export default function IndexSection() {
               key={e.id}
               src={e.output.img}
               alt=""
+              width={1200}
+              height={1600}
+              loading="lazy"
+              decoding="async"
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
                 hovered === e.id ? "opacity-100" : "opacity-0"
               }`}

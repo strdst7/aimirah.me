@@ -7,12 +7,12 @@ import {
   useRaf,
   useSectionProgress,
 } from "../lib/ui";
-import cloudUrl from "../assets/cloud.jpg";
-import treeUrl from "../assets/tree.webp";
-import bamboo1 from "../assets/bamboo-1.webp";
-import bamboo2 from "../assets/bamboo-2.webp";
-import bamboo3 from "../assets/bamboo-3.webp";
-import bamboo4 from "../assets/bamboo-4.webp";
+const cloudUrl = "/images/cloud.jpg";
+const treeUrl = "/images/tree.webp";
+const bamboo1 = "/images/bamboo-1.webp";
+const bamboo2 = "/images/bamboo-2.webp";
+const bamboo3 = "/images/bamboo-3.webp";
+const bamboo4 = "/images/bamboo-4.webp";
 
 /* ================================================================== */
 /*  Falling maple leaves canvas                                        */
@@ -535,6 +535,10 @@ export default function Hero() {
           <img
             src={treeUrl}
             alt=""
+            width={1500}
+            height={1409}
+            decoding="async"
+            fetchPriority="high"
             className="h-[46vh] w-auto lg:h-[64vh]"
             style={{ transform: "scaleX(-1)", mixBlendMode: "multiply" }}
             draggable={false}
@@ -552,6 +556,10 @@ export default function Hero() {
               key={i}
               src={b.src}
               alt=""
+              width={560}
+              height={2000}
+              loading="lazy"
+              decoding="async"
               draggable={false}
               className="absolute bottom-0 h-full w-auto will-change-transform"
               style={{
