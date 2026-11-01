@@ -7,7 +7,9 @@
     "./cn": "./cn.ts",
     "./vite.base": "./vite.base.ts",
     "./tsconfig.base.json": "./tsconfig.base.json",
-    "./useMotion": "./useMotion.ts"
+    "./useMotion": "./useMotion.ts",
+    "./ErrorBoundary": "./ErrorBoundary.tsx",
+    "./storage": "./storage.ts"
   },
   "dependencies": {
     "clsx": "2.1.1",

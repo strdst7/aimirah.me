@@ -16,6 +16,12 @@ import {
 } from './types/catalog';
 import { AimirahMascot, TYPE_META, TypeIcon } from './components/Icons';
 import {
+  hasStringFields,
+  isArrayOf,
+  isObject,
+  safeJsonParse,
+} from '@aimirah/shared/storage';
+import {
   CassetteWindow,
   Faceplate,
   LegendChip,
@@ -61,6 +67,16 @@ const SIDEBAR_BROWSE_ORDER: ComponentTypePlural[] = [
   'loops',
 ];
 
+const isStoredCollection = (value: unknown): value is MixtapeCollection => {
+  if (!isObject(value)) return false;
+  if (!hasStringFields(value, ['id', 'name', 'sideLabel', 'description', 'accentColor', 'createdAt'])) {
+    return false;
+  }
+  return isArrayOf(value.items, (item) =>
+    hasStringFields(item, ['name', 'path', 'category', 'typePlural'])
+  );
+};
+
 export function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window !== 'undefined') {
@@ -79,22 +95,29 @@ export function App() {
   const [selectedJob, setSelectedJob] = useState<JobPosting | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
+  // Storage is untrusted: validate shapes instead of spreading whatever is
+  // there into state (CONCERNS.md #23).
   const [cart, setCart] = useState<CartState>(() => {
-    try {
-      const raw = localStorage.getItem('aimirahMixtapeCart');
-      if (raw) return { ...EMPTY_CART, ...JSON.parse(raw) };
-    } catch {}
-    return EMPTY_CART;
+    const parsed = safeJsonParse(localStorage.getItem('aimirahMixtapeCart'));
+    if (!isObject(parsed)) return EMPTY_CART;
+    const next = { ...EMPTY_CART };
+    for (const type of SIDEBAR_BROWSE_ORDER) {
+      const bucket = parsed[type];
+      if (Array.isArray(bucket)) {
+        next[type] = bucket.filter((item) =>
+          hasStringFields(item, ['name', 'path', 'category', 'description', 'typePlural'])
+        ) as unknown as CartState[typeof type];
+      }
+    }
+    return next;
   });
 
   const [collections, setCollections] = useState<MixtapeCollection[]>(() => {
-    try {
-      const raw = localStorage.getItem('aimirahMixtapeCollections');
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-      }
-    } catch {}
+    const parsed = safeJsonParse(localStorage.getItem('aimirahMixtapeCollections'));
+    if (isArrayOf(parsed, isStoredCollection) && parsed.length > 0) return parsed;
+    if (parsed !== null) {
+      console.warn('[mixtape] ignoring malformed saved collections');
+    }
     return INITIAL_COLLECTIONS;
   });
 
