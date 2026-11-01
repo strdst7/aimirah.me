@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowLeftRight, Banknote } from 'lucide-react';
 import { fetchCatalogue, fmtRate, fmtDayYear, useAsyncData } from '../lib/api';
 import { ErrorPanel, Panel, Reveal, SectionShell, Skeleton } from './ui';
-import { cn } from '../utils/cn';
+import { cn } from '@aimirah/shared/cn';
 
 interface FxRow {
   date: string;

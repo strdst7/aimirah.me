@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Icon, Logo, Wordmark } from "./Icon";
 import { GITHUB_STARS, SITE } from "../lib/content";
 import { lockScroll, unlockScroll } from "../lib/scrollLock";
-import { cn } from "../utils/cn";
+import { cn } from "@aimirah/shared/cn";
 
 type HeaderProps = {
   dark: boolean;

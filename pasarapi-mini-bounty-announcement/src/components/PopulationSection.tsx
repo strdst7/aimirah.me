@@ -3,7 +3,7 @@ import { Users } from 'lucide-react';
 import { fetchCatalogue, useAsyncData } from '../lib/api';
 import { useInView, useAnimatedNumber } from '../hooks/useFx';
 import { ErrorPanel, Panel, SectionShell, Skeleton } from './ui';
-import { cn } from '../utils/cn';
+import { cn } from '@aimirah/shared/cn';
 
 interface PopRow {
   date: string;

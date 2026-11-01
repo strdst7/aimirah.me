@@ -3,7 +3,7 @@ import { Wallet } from 'lucide-react';
 import { fetchCatalogue, fmtInt, useAsyncData } from '../lib/api';
 import { useInView } from '../hooks/useFx';
 import { ErrorPanel, Panel, Reveal, SectionShell, Skeleton } from './ui';
-import { cn } from '../utils/cn';
+import { cn } from '@aimirah/shared/cn';
 
 interface HiesRow {
   date: string;

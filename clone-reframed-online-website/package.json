@@ -1,5 +1,5 @@
 {
-  "name": "react-vite-tailwind",
+  "name": "@aimirah/reframed-site",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "clsx": "2.1.1",
+    "@aimirah/shared": "*",
     "lenis": "^1.3.26",
     "lucide-react": "^1.48.0",
     "react": "19.2.6",
-    "react-dom": "19.2.6",
-    "tailwind-merge": "3.4.0"
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.1.17",
@@ -30,5 +29,6 @@
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "description": "kdmirah Digital Inspiration Lab \u2014 live at aimirah.me"
 }

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Icon } from "./Icon";
 import { CATEGORIES, videos, type CategoryKey, type Video } from "../lib/content";
 import { lockScroll, unlockScroll } from "../lib/scrollLock";
-import { cn } from "../utils/cn";
+import { cn } from "@aimirah/shared/cn";
 
 export function SearchDialog({
   onClose,

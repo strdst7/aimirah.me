@@ -3,7 +3,7 @@ import { ExternalLink, Search, Lock, Unlock } from 'lucide-react';
 import { fetchJson, useAsyncData } from '../lib/api';
 import { FALLBACK_APIS, ApiEntry } from '../data/fallbackApis';
 import { Panel, Reveal, SectionShell, Skeleton } from './ui';
-import { cn } from '../utils/cn';
+import { cn } from '@aimirah/shared/cn';
 
 interface CatalogueResponse {
   updated: string;
