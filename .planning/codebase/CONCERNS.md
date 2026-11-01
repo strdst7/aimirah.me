@@ -1,6 +1,7 @@
 # Codebase Concerns
 
 **Analysis Date:** 2026-11-01
+**Remediation pass:** 2026-11-01 — see the [Remediation status](#remediation-status) table at the end.
 
 Scope: the repository root `/root/aimirah.me` contains five independent Vite + React 19 + TypeScript sites with no root `package.json` and no workspace tooling.
 
@@ -335,3 +336,39 @@ Scope: the repository root `/root/aimirah.me` contains five independent Vite + R
 ---
 
 *Concerns audit: 2026-11-01*
+
+---
+
+## Remediation status
+
+Status after the 2026-11-01 fix pass. Unlisted items remain open.
+
+| # | Concern | Status |
+|---|---|---|
+| 1 | Five near-identical projects with no shared code or monorepo tooling | RESOLVED — npm workspaces, @aimirah/shared, one lockfile, shared vite/tsconfig presets. |
+| 2 | "clone-*" projects are divergent copies rather than shared components | PARTIAL — cn() and build config now shared; scroll/preloader/cursor primitives still duplicated per site. |
+| 3 | No tests anywhere in the repository | PARTIAL — Vitest suite added (20 tests) for pure functions + storage guards; no component/E2E tests yet. |
+| 4 | No CI pipeline | RESOLVED — .github/workflows/ci.yml runs npm ci + typecheck + build for all five sites. |
+| 5 | Missing `.gitignore` in two projects (secret- and bloat-exposure risk) | RESOLVED — .gitignore added to root and every project. |
+| 6 | Single-file build inlines multi-megabyte assets into `index.html` | RESOLVED — string-tune images moved to public/; index.html 6 MB -> 416 kB. JSON bundles unchanged (see #20). |
+| 7 | Duplicate and conflicting deployment configuration | RESOLVED — links centralised in src/lib/links.ts; one documented host per site in README. |
+| 8 | Inconsistent `prefers-reduced-motion` handling | RESOLVED — shared usePrefersReducedMotion; starfield/cursor/VU gated; global CSS guard added. |
+| 9 | Marketing numbers contradict shipped data | RESOLVED — counts derived from shipped data; fake counters removed; GITHUB_STARS corrected to 12,970. |
+| 10 | Branding/content drift between projects and folders | RESOLVED — all MI4Inc. links point at mi4inc.com. |
+| 12 | Unused/dead code and unused dependencies | RESOLVED — dead cn.ts copies, VideoCardSkeleton, unused exports and deps removed. |
+| 17 | Unoptimized, eager, dimension-less images | RESOLVED — width/height, lazy loading, decoding=async and fetchPriority added. |
+| 18 | Multiple always-on animation loops | RESOLVED — l/visibilitychange gating on starfield, cursor, clocks, counters and VU meter. |
+| 19 | Duplicate network fetches for the same datasets | RESOLVED — in-flight request cache keyed by URL; 5 requests -> 3 on first paint. |
+| 20 | Oversized monolithic data bundles (see #6) | PARTIAL — images no longer inlined; videos.json / catalogSnapshot.json still bundled whole. |
+| 23 | `localStorage` state hydration without schema checks | RESOLVED — shared/storage guards validate cart and collections on hydration. |
+| 24 | Silent error swallowing in `api.ts` and `DirectorySection` | RESOLVED — console.warn on filtered-request fallback and snapshot fallback. |
+| 27 | Version drift across five lockfiles | RESOLVED — lucide-react pinned to ^1.48.0 everywhere; esbuild/react-is removed. |
+| 30 | SEO infrastructure only in one project | PARTIAL — canonical/OG/twitter + robots.txt + sitemap.xml added; no og:image art per site yet. |
+| 32 | No error boundaries or global error UI | RESOLVED — shared ErrorBoundary wraps every App. |
+| 33 | Zero coverage of all functional surface | PARTIAL — see #3. |
+| 34 | README documents only 1 of 5 projects | RESOLVED — README documents all five sites. |
+| 35 | Build config duplicated verbatim (maintenance) | RESOLVED — shared/tsconfig.base.json and shared/vite.base.ts. |
+| 36 | No Node/runtime pinning | RESOLVED — .nvmrc plus engines >=20 in every package.json. |
+| 37 | Minor code-quality nits | PARTIAL — as-any casts and dead eslint directives removed; key={i} and inline styles remain. |
+
+_Every change was verified with `tsc --noEmit`, `vite build` and `vitest run` before commit._
