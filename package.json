@@ -1,0 +1,17 @@
+{
+  "name": "aimirah-me",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Monorepo root for the aimirah.me sites. Currently hosts shared tooling (tests); workspace hoisting tracked in .planning/codebase/CONCERNS.md #1.",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
