@@ -45,7 +45,22 @@ Site content (the four experiments) lives in [`src/lib/data.ts`](clone-reframed-
 
 ## Deployment
 
-Hosted on GitHub Pages with a custom domain — `public/CNAME` points to `aimirah.me`.
+Each site has exactly one hosting target. Do not add a second provider's config
+to a project (see `.planning/codebase/CONCERNS.md` #7).
+
+| Project | Domain | Host | Config |
+|---|---|---|---|
+| `clone-reframed-online-website` | `aimirah.me` | GitHub Pages | `public/CNAME` |
+| `clone-string-tune-website` | `mi4inc.com` | Vercel | Vercel project settings |
+| `aimirah-mixtape` | `aimirah.mixtape` | (not yet configured) | — |
+| `kdmirah-studio` | `kdmirah.studio` | (not yet configured) | — |
+| `pasarapi-mini-bounty-announcement` | (not yet configured) | (not yet configured) | — |
+
+`clone-reframed-online-website/vercel.json` exists only for the legacy `/dev`
+redirect to the MI4Inc. preview; the canonical site itself is served by GitHub
+Pages. Outbound links to sibling projects live in
+[`src/lib/links.ts`](clone-reframed-online-website/src/lib/links.ts) — update
+them there, never inline in a component.
 
 ## License
 
