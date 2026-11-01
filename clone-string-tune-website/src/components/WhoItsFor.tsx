@@ -135,7 +135,7 @@ export default function WhoItsFor() {
           <div className="mt-[var(--h6)]">
             <Button
               variant="-red"
-              href="https://aimirah.com"
+              href="https://mi4inc.com"
               icon={<ArrowUpRight className="h-4 w-4" strokeWidth={2.2} />}
             >
               Learn How
