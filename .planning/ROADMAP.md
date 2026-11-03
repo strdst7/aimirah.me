@@ -22,11 +22,12 @@ Deliver one vertical MVP: reconcile the older feature branch with remote `main` 
   3. A visitor can open PASAR.DATA from that section and arrive at its reachable live site.
   4. A visitor can identify and activate each of those links with a keyboard and on a mobile browser, including awareness that each opens a new tab.
   5. A visitor does not see `https://aimirah.mixtape/` offered as a live project destination.
-**Plans**: TBD
+**Plans**: 1/1 plans executed
+- [x] 01-01-PLAN.md
 **UI hint**: yes
 
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Live standalone project links | 0/TBD | Not started | - |
+| 1. Live standalone project links | 1/1 | In Progress | - |
