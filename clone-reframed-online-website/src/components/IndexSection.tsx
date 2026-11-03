@@ -126,23 +126,30 @@ export default function IndexSection() {
         <p className="mt-3 max-w-xl font-sans text-sm text-bone/70">
           Separate sites from the kdmirah lab. Each opens its own deployed project.
         </p>
-        <ul className="mt-10 border-t border-bone/10">
-          {STANDALONE_PROJECTS.map((project) => (
-            <li className="border-b border-bone/10" key={project.index}>
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-5 py-6 text-bone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal md:gap-10"
-              >
-                <span className="font-mono text-xs text-signal">{project.index}</span>
-                <span className="font-display text-2xl uppercase group-hover:text-signal md:text-4xl">{project.title}</span>
-                <span className="sr-only">(opens in a new tab)</span>
-                <ArrowUpRight size={20} aria-hidden className="ml-auto shrink-0" />
-              </a>
-            </li>
-          ))}
-        </ul>
+        {STANDALONE_PROJECTS.length < 1 ? (
+          <p className="mt-10 font-sans text-sm text-bone/70">
+            <strong className="block font-display text-2xl uppercase text-bone">No live standalone projects yet</strong>
+            Check back once a project is live.
+          </p>
+        ) : (
+          <ul className="mt-10 border-t border-bone/10">
+            {STANDALONE_PROJECTS.map((project) => (
+              <li className="border-b border-bone/10" key={project.index}>
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-5 py-6 text-bone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal md:gap-10"
+                >
+                  <span className="font-mono text-xs text-signal">{project.index}</span>
+                  <span className="min-w-0 font-display text-2xl uppercase group-hover:text-signal md:text-4xl">{project.title}</span>
+                  <span className="sr-only">(opens in a new tab)</span>
+                  <ArrowUpRight size={20} aria-hidden className="ml-auto shrink-0" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );
