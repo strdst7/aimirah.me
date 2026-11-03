@@ -6,13 +6,13 @@
     {
       "number": "1",
       "name": "Live standalone project links",
-      "status": "pending"
+      "status": "in_progress"
     }
   ],
   "next": {
     "command": "/gsd-progress --next",
-    "label": "Advance to the next step",
-    "reason": "Phase 1 of 1 · 0% · executing"
+    "label": "Advance to the next step (verify)",
+    "reason": "Phase 1 of 1 · 0% · ready to verify"
   },
-  "updated_at": "2026-11-03T22:50:55.549Z"
+  "updated_at": "2026-11-03T23:12:39.482Z"
 }
