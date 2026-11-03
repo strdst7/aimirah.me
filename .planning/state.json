@@ -1,0 +1,18 @@
+{
+  "contract": "1.0.0",
+  "flavor": "core",
+  "milestone": null,
+  "phases": [
+    {
+      "number": "1",
+      "name": "Live standalone project links",
+      "status": "pending"
+    }
+  ],
+  "next": {
+    "command": "/gsd-progress --next",
+    "label": "Advance to the next step",
+    "reason": "Phase 1 of 1 · 0% · executing"
+  },
+  "updated_at": "2026-11-03T22:47:18.516Z"
+}
