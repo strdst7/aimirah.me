@@ -35,6 +35,7 @@ describe("standalone project links", () => {
       expect(attributes).toContain('target="_blank"');
       expect(attributes).toContain('rel="noopener noreferrer"');
       expect(attributes).toContain("focus-visible:outline-signal");
+      expect(content).toContain(`text-signal\">${realProjects[i].index}</span>`);
       expect(content).toContain(realProjects[i].title);
       expect(content).toContain("(opens in a new tab)");
       expect(content).toContain("aria-hidden=\"true\"");
