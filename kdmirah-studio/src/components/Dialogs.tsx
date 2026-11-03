@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Icon, Logo, Wordmark } from "./Icon";
 import { SITE, type Skill } from "../lib/content";
 import { lockScroll, unlockScroll } from "../lib/scrollLock";
-import { cn } from "../utils/cn";
+import { cn } from "@aimirah/shared/cn";
 
 function Overlay({
   children,

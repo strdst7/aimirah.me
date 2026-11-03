@@ -1,0 +1,27 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/aimirah-mixtape"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/clone-reframed-online-website"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/clone-string-tune-website"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/kdmirah-studio"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/pasarapi-mini-bounty-announcement"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5

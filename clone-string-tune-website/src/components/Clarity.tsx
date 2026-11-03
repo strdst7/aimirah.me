@@ -37,7 +37,7 @@ function WordFill({ text, p }: { text: string; p: number }) {
 
 function ClarityItem({ text, index }: { text: string; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const raw = useSectionProgress(ref as any, "enter");
+  const raw = useSectionProgress(ref, "enter");
   const p = clamp((raw - 0.12) / 0.66);
   return (
     <div

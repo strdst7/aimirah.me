@@ -157,16 +157,8 @@ export const SKILLS: Skill[] = [
 export const POPULAR_SKILLS = SKILLS.slice(0, 4);
 export const PROMO_SKILLS = [SKILLS[4], SKILLS[5], SKILLS[3], SKILLS[1]];
 
-export function skillBySlug(slug: string): Skill | undefined {
-  return SKILLS.find((s) => s.slug === slug);
-}
-
 export function profileUrl(author: string): string {
   return `https://x.com/${author.replace(/[^a-zA-Z0-9_]/g, "")}`;
-}
-
-export function initials(author: string): string {
-  return author.replace(/[^a-zA-Z0-9]/g, "").slice(0, 2).toUpperCase() || "AI";
 }
 
 export const TOOL_ABBREVIATIONS: Record<string, string> = {
@@ -204,7 +196,12 @@ export function durationSeconds(duration: string): number {
 
 export const PAGE_SIZE = 40;
 export const TOTAL_VIDEOS = videos.length;
-export const GITHUB_STARS = 9536;
+/**
+ * Stars on the upstream archive repo. Verified against the GitHub API on
+ * 2026-11-01 (yihui-dev/awesome-opus5-5-videos = 12,970). Update deliberately;
+ * never fake a rising counter (see CONCERNS.md #9).
+ */
+export const GITHUB_STARS = 12970;
 
 export const SITE = {
   name: "kdmirah.studio",

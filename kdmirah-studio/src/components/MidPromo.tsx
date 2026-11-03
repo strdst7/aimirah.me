@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Icon } from "./Icon";
 import { PROMO_SKILLS, SITE, type Skill } from "../lib/content";
-import { cn } from "../utils/cn";
+import { cn } from "@aimirah/shared/cn";
 
 export function MidPromo({ onOpenSkill }: { onOpenSkill: (skill: Skill) => void }) {
   const [active, setActive] = useState(0);

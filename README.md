@@ -1,6 +1,48 @@
-# PASAR.DATA
+# aimirah.me
 
 **kdmirah — Digital Inspiration Lab.** Live at [aimirah.me](https://aimirah.me).
+
+This repository is a monorepo of **five independent sites** sharing one toolchain.
+The section below describes the primary site (`clone-reframed-online-website`);
+see [Repository layout](#repository-layout) for the others.
+
+| Project | Purpose | Dev command | Deploy target |
+|---|---|---|---|
+| `clone-reframed-online-website` | kdmirah Digital Inspiration Lab (primary) | `npm run dev --workspace clone-reframed-online-website` | GitHub Pages → aimirah.me |
+| `clone-string-tune-website` | MI4Inc. motion study | `npm run dev --workspace clone-string-tune-website` | Vercel → mi4inc.com |
+| `aimirah-mixtape` | Component catalogue and CLI | `npm run dev --workspace aimirah-mixtape` | aimirah.mixtape |
+| `kdmirah-studio` | Opus 5.5 video archive | `npm run dev --workspace kdmirah-studio` | kdmirah.studio |
+| `pasarapi-mini-bounty-announcement` | PASAR.DATA Malaysia open-data dashboard | `npm run dev --workspace pasarapi-mini-bounty-announcement` | _not yet configured_ |
+
+## Repository layout
+
+```
+aimirah.me/
+├── shared/                        # @aimirah/shared — cn(), vite/tsconfig presets,
+│                                  #   useMotion hooks, ErrorBoundary, storage guards
+├── tests/                         # Vitest unit tests (run from the repo root)
+├── clone-reframed-online-website/ # primary site (aimirah.me)
+├── clone-string-tune-website/     # MI4Inc. motion study
+├── aimirah-mixtape/               # component catalogue + CLI
+├── kdmirah-studio/                # video archive
+└── pasarapi-mini-bounty-announcement/  # open-data dashboard
+```
+
+Requires **Node 20+** (see `.nvmrc`). One install at the root serves every site:
+
+```bash
+npm install          # from the repository root
+npm test             # unit tests (Vitest)
+npm run build        # build all five sites
+npm run typecheck    # tsc --noEmit across all workspaces
+```
+
+Each site's `vite.config.ts` and `tsconfig.json` are thin wrappers around
+`shared/` — edit the shared files, not the per-site copies.
+
+---
+
+## Primary site (`clone-reframed-online-website`)
 
 A dark, editorial single-page site studying the space between what we see and what we make: four experiments, each pairing a raw source image with the work it provoked, compared through a draggable seam.
 
@@ -45,7 +87,22 @@ Site content (the four experiments) lives in [`src/lib/data.ts`](clone-reframed-
 
 ## Deployment
 
-Hosted on GitHub Pages with a custom domain — `public/CNAME` points to `aimirah.me`.
+Each site has exactly one hosting target. Do not add a second provider's config
+to a project (see `.planning/codebase/CONCERNS.md` #7).
+
+| Project | Domain | Host | Config |
+|---|---|---|---|
+| `clone-reframed-online-website` | `aimirah.me` | GitHub Pages | `public/CNAME` |
+| `clone-string-tune-website` | `mi4inc.com` | Vercel | Vercel project settings |
+| `aimirah-mixtape` | `aimirah.mixtape` | (not yet configured) | — |
+| `kdmirah-studio` | `kdmirah.studio` | (not yet configured) | — |
+| `pasarapi-mini-bounty-announcement` | (not yet configured) | (not yet configured) | — |
+
+`clone-reframed-online-website/vercel.json` exists only for the legacy `/dev`
+redirect to the MI4Inc. preview; the canonical site itself is served by GitHub
+Pages. Outbound links to sibling projects live in
+[`src/lib/links.ts`](clone-reframed-online-website/src/lib/links.ts) — update
+them there, never inline in a component.
 
 ## License
 

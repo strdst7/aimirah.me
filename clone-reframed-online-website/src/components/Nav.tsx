@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useVisibleInterval } from "@aimirah/shared/useMotion";
 import { scrollToId, scrollToTop } from "../lib/scroll";
 
 export const NAV_LINKS = [
@@ -18,19 +19,18 @@ interface Props {
 export default function Nav({ open, onToggle, ready }: Props) {
   const [time, setTime] = useState("");
 
-  useEffect(() => {
-    const update = () => {
+  // Ticks only while the tab is visible (CONCERNS.md #18).
+  useVisibleInterval(
+    useCallback(() => {
       const d = new Date();
       setTime(
         `${String(d.getHours()).padStart(2, "0")}:${String(
           d.getMinutes()
         ).padStart(2, "0")}:${String(d.getSeconds()).padStart(2, "0")}`
       );
-    };
-    update();
-    const id = window.setInterval(update, 1000);
-    return () => window.clearInterval(id);
-  }, []);
+    }, []),
+    1000
+  );
 
   return (
     <nav

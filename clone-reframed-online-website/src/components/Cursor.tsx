@@ -60,13 +60,25 @@ export default function Cursor() {
       ring.y = -100;
     };
 
+    // Pause the trailing animation while the tab is hidden (CONCERNS.md #18).
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      } else if (!raf) {
+        raf = requestAnimationFrame(loop);
+      }
+    };
+
     window.addEventListener("mousemove", onMove, { passive: true });
     document.documentElement.addEventListener("mouseleave", onLeave);
+    document.addEventListener("visibilitychange", onVisibility);
     raf = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
       document.documentElement.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(raf);
       document.body.classList.remove("custom-cursor");
     };

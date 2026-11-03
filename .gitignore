@@ -1,4 +1,9 @@
-.vercel
 .env*
 node_modules/
 dist/
+build/
+.vercel/
+.netlify/
+.DS_Store
+*.local
+*.tsbuildinfo

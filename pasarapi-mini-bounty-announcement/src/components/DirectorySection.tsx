@@ -3,7 +3,7 @@ import { ExternalLink, Search, Lock, Unlock } from 'lucide-react';
 import { fetchJson, useAsyncData } from '../lib/api';
 import { FALLBACK_APIS, ApiEntry } from '../data/fallbackApis';
 import { Panel, Reveal, SectionShell, Skeleton } from './ui';
-import { cn } from '../utils/cn';
+import { cn } from '@aimirah/shared/cn';
 
 interface CatalogueResponse {
   updated: string;
@@ -18,8 +18,11 @@ export function DirectorySection() {
     try {
       const json = await fetchJson<CatalogueResponse>('https://pasarapi.xyz/api/catalogue');
       return { apis: json.apis, live: true, count: json.count };
-    } catch {
-      // CORS or offline — serve the curated snapshot instead
+    } catch (error) {
+      // CORS or offline — serve the curated snapshot instead. Log it so the
+      // failure is diagnosable; previously this was swallowed silently
+      // (CONCERNS.md #24). The UI already shows a "CACHED SNAPSHOT" badge.
+      console.warn('[DirectorySection] live catalogue unavailable, using snapshot:', error);
       return { apis: FALLBACK_APIS, live: false, count: FALLBACK_APIS.length };
     }
   });

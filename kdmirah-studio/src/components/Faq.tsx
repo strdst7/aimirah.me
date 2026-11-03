@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Icon } from "./Icon";
 import { SITE } from "../lib/content";
-import { cn } from "../utils/cn";
+import { cn } from "@aimirah/shared/cn";
 
 const FAQS = [
   {

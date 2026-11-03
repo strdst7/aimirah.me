@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {
   ASCII_BANNER,
   CATALOG_COUNTS,
+  CATALOG_TOTAL_LABEL,
   INITIAL_COLLECTIONS,
 } from './data/catalog';
 import {
@@ -14,6 +15,12 @@ import {
   SavedComponentRef,
 } from './types/catalog';
 import { AimirahMascot, TYPE_META, TypeIcon } from './components/Icons';
+import {
+  hasStringFields,
+  isArrayOf,
+  isObject,
+  safeJsonParse,
+} from '@aimirah/shared/storage';
 import {
   CassetteWindow,
   Faceplate,
@@ -60,6 +67,16 @@ const SIDEBAR_BROWSE_ORDER: ComponentTypePlural[] = [
   'loops',
 ];
 
+const isStoredCollection = (value: unknown): value is MixtapeCollection => {
+  if (!isObject(value)) return false;
+  if (!hasStringFields(value, ['id', 'name', 'sideLabel', 'description', 'accentColor', 'createdAt'])) {
+    return false;
+  }
+  return isArrayOf(value.items, (item) =>
+    hasStringFields(item, ['name', 'path', 'category', 'typePlural'])
+  );
+};
+
 export function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window !== 'undefined') {
@@ -78,22 +95,29 @@ export function App() {
   const [selectedJob, setSelectedJob] = useState<JobPosting | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
+  // Storage is untrusted: validate shapes instead of spreading whatever is
+  // there into state (CONCERNS.md #23).
   const [cart, setCart] = useState<CartState>(() => {
-    try {
-      const raw = localStorage.getItem('aimirahMixtapeCart');
-      if (raw) return { ...EMPTY_CART, ...JSON.parse(raw) };
-    } catch {}
-    return EMPTY_CART;
+    const parsed = safeJsonParse(localStorage.getItem('aimirahMixtapeCart'));
+    if (!isObject(parsed)) return EMPTY_CART;
+    const next = { ...EMPTY_CART };
+    for (const type of SIDEBAR_BROWSE_ORDER) {
+      const bucket = parsed[type];
+      if (Array.isArray(bucket)) {
+        next[type] = bucket.filter((item) =>
+          hasStringFields(item, ['name', 'path', 'category', 'description', 'typePlural'])
+        ) as unknown as CartState[typeof type];
+      }
+    }
+    return next;
   });
 
   const [collections, setCollections] = useState<MixtapeCollection[]>(() => {
-    try {
-      const raw = localStorage.getItem('aimirahMixtapeCollections');
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-      }
-    } catch {}
+    const parsed = safeJsonParse(localStorage.getItem('aimirahMixtapeCollections'));
+    if (isArrayOf(parsed, isStoredCollection) && parsed.length > 0) return parsed;
+    if (parsed !== null) {
+      console.warn('[mixtape] ignoring malformed saved collections');
+    }
     return INITIAL_COLLECTIONS;
   });
 
@@ -323,6 +347,7 @@ export function App() {
       return;
     }
     const id = window.setInterval(() => {
+      if (document.visibilityState === 'hidden') return;
       setTapeCounter(Math.floor((Date.now() - counterAnchorRef.current) / 420) + 1);
     }, 420);
     return () => window.clearInterval(id);
@@ -771,7 +796,7 @@ export function App() {
                           Dolby&nbsp;NR · Metal · Auto&nbsp;Reverse
                         </span>
                         <span className="hidden sm:inline-flex ml-auto">
-                          <LegendChip active>Catalog 1,910</LegendChip>
+                          <LegendChip active>Catalog {CATALOG_TOTAL_LABEL}</LegendChip>
                         </span>
                       </div>
 
@@ -971,7 +996,7 @@ export function App() {
                   </span>
                 </div>
                 <p className="legend mt-1.5" style={{ fontSize: 8.5, lineHeight: 1.7 }}>
-                  1,910+ Claude Code components · Skills · Agents · Commands · MCPs · Hooks
+                  {CATALOG_TOTAL_LABEL}+ Claude Code components · Skills · Agents · Commands · MCPs · Hooks
                 </p>
               </div>
             </div>

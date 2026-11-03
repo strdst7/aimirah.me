@@ -1,0 +1,22 @@
+{
+  "name": "@aimirah/shared",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "./cn": "./cn.ts",
+    "./vite.base": "./vite.base.ts",
+    "./tsconfig.base.json": "./tsconfig.base.json",
+    "./useMotion": "./useMotion.ts",
+    "./ErrorBoundary": "./ErrorBoundary.tsx",
+    "./storage": "./storage.ts"
+  },
+  "dependencies": {
+    "clsx": "2.1.1",
+    "tailwind-merge": "3.4.0"
+  },
+  "peerDependencies": {
+    "vite": "^7.3.7",
+    "react": "^19.2.6"
+  }
+}

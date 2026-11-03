@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Button, Reveal, Star12 } from "../lib/ui";
-import polygonUrl from "../assets/polygon.jpg";
+const polygonUrl = "/images/polygon.jpg";
 
 function MailIcon() {
   return (

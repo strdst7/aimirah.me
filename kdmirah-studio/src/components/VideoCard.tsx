@@ -4,7 +4,7 @@ import {
   TOOL_ABBREVIATIONS,
   type Video,
 } from "../lib/content";
-import { cn } from "../utils/cn";
+import { cn } from "@aimirah/shared/cn";
 
 const CATEGORY_GRADIENT: Record<string, string> = {
   "Motion graphics": "from-[#e59a6f] via-[#b4552f] to-[#3a1f18]",

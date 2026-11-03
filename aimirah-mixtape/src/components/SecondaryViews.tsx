@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import {
+  CATALOG_TOTAL,
+  CATALOG_TOTAL_LABEL,
   CLI_PACKAGE,
   formatComponentTitle,
   JOBS_DATA,
@@ -236,7 +238,7 @@ export const TrendingView: React.FC<{
   const [chartType, setChartType] = useState<ComponentTypePlural>('skills');
 
   const stats = TRENDING_DATA?.globalStats ?? {
-    totalComponents: 2182,
+    totalComponents: CATALOG_TOTAL,
     totalDownloads: 1618534,
     monthlyDownloads: 99850,
     weeklyDownloads: 21371,
@@ -781,7 +783,7 @@ export const SpecModal: React.FC<{
       title: 'aimirah.mixtape — CLI & Batch Installation Guide',
       body: `# Quick Start with aimirah-mixtape CLI
 
-# 1. Interactive Picker (browse all 1,910+ tracks in terminal)
+# 1. Interactive Picker (browse all ${CATALOG_TOTAL_LABEL}+ tracks in terminal)
 ${CLI_PACKAGE}
 
 # 2. Install a single component by flag
@@ -804,7 +806,7 @@ All files are plain Markdown (.md) or JSON (.json) written directly to .claude/ 
       title: '/llms.txt — Machine-Readable Agent Discovery Index',
       body: `# aimirah.mixtape (Open-Source Claude Code Catalog)
 
-> Open-source catalog and CLI of 1,910+ ready-to-use components for Claude Code: skills, subagents, slash commands, hooks, MCP server configurations, settings, loops, and mods.
+> Open-source catalog and CLI of ${CATALOG_TOTAL_LABEL}+ ready-to-use components for Claude Code: skills, subagents, slash commands, hooks, MCP server configurations, settings, loops, and mods.
 
 ## How an AI Agent Should Use aimirah.mixtape
 1. Inspect plain-file source directly in the UI or via /openapi.json endpoints.
@@ -835,7 +837,7 @@ All files are plain Markdown (.md) or JSON (.json) written directly to .claude/ 
           servers: [{ url: 'https://aimirah.mixtape' }],
           paths: {
             '/search-index.json': {
-              get: { summary: 'List all 1,910+ catalog components with metadata and categories' },
+              get: { summary: `List all ${CATALOG_TOTAL_LABEL}+ catalog components with metadata and categories` },
             },
             '/components/{type}.json': {
               get: { summary: 'Retrieve full array for skills, agents, commands, mcps, hooks, settings, mods, loops' },

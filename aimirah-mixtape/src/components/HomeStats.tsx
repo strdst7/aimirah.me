@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { JOBS_DATA, TRENDING_DATA } from '../data/catalog';
 
 interface StatConfig {
   key: string;
@@ -89,43 +90,33 @@ export const HomeStats: React.FC<{
   onOpenTrending: () => void;
   onOpenDocs: () => void;
 }> = ({ onOpenTrending, onOpenDocs }) => {
-  const [downloads, setDownloads] = useState(1618534);
-  const [prs, setPrs] = useState(284);
-  const [npmInstalls, setNpmInstalls] = useState(249812);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setDownloads((d) => d + (Math.random() > 0.35 ? 1 : 2));
-      if (Math.random() > 0.72) {
-        setNpmInstalls((n) => n + 1);
-      }
-      if (Math.random() > 0.96) {
-        setPrs((p) => p + 1);
-      }
-    }, 2600);
-    return () => window.clearInterval(timer);
-  }, []);
+  // Real catalogue metrics. Previously these were invented figures that
+  // incremented on a setInterval with Math.random(), which made the site
+  // advertise numbers it could not substantiate (see CONCERNS.md #9).
+  const downloads = TRENDING_DATA?.globalStats?.totalDownloads ?? 0;
+  const prs = JOBS_DATA?.totalJobs ?? 0;
+  const npmInstalls = TRENDING_DATA?.globalStats?.monthlyDownloads ?? 0;
 
   const items: StatConfig[] = [
     {
       key: 'downloads',
       label: 'Downloads',
       base: downloads,
-      title: 'Components installed through the aimirah-mixtape CLI, all time — click to view live analytics',
+      title: 'All-time component downloads reported in the catalogue snapshot — click to view analytics',
       onClick: onOpenTrending,
     },
     {
       key: 'prs',
-      label: 'Mixtape PRs',
+      label: 'Open Roles',
       base: prs,
-      title: 'Merged community pull requests adding or improving a component',
+      title: 'Open roles listed in the aimirah.mixtape jobs board',
       href: 'https://github.com/aimirah/mixtape',
     },
     {
       key: 'npm',
       label: 'npm Installs',
       base: npmInstalls,
-      title: 'Installs of aimirah-mixtape CLI package on npm',
+      title: 'Monthly downloads reported for the aimirah.mixtape catalogue',
       onClick: onOpenDocs,
     },
   ];

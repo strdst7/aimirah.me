@@ -61,7 +61,7 @@ function AudienceCard({
 
 export default function WhoItsFor() {
   const cardsRef = useRef<HTMLDivElement>(null);
-  const p = useSectionProgress(cardsRef as any, "through");
+  const p = useSectionProgress(cardsRef, "through");
 
   return (
     <section className="relative overflow-clip bg-[var(--c-black)] pb-[var(--h1)]">
@@ -135,7 +135,7 @@ export default function WhoItsFor() {
           <div className="mt-[var(--h6)]">
             <Button
               variant="-red"
-              href="https://aimirah.com"
+              href="https://mi4inc.com"
               icon={<ArrowUpRight className="h-4 w-4" strokeWidth={2.2} />}
             >
               Learn How

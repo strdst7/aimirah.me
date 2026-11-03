@@ -10,7 +10,7 @@ import {
   type Skill,
   type Video,
 } from "../lib/content";
-import { cn } from "../utils/cn";
+import { cn } from "@aimirah/shared/cn";
 
 function pageItems(current: number, total: number): (number | "start" | "end")[] {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);

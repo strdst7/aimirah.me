@@ -15,6 +15,10 @@ import Footer from "./components/Footer";
 function Preloader({ onDone }: { onDone: () => void }) {
   const [n, setN] = useState(0);
   const [leave, setLeave] = useState(false);
+  // Keep the latest callback in a ref so the timer effect can run once,
+  // without a stale-closure suppression comment (CONCERNS.md #37).
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
 
   useEffect(() => {
     let v = 0;
@@ -25,13 +29,12 @@ function Preloader({ onDone }: { onDone: () => void }) {
         clearInterval(iv);
         setTimeout(() => {
           setLeave(true);
-          setTimeout(onDone, 650);
+          onDoneRef.current();
         }, 260);
       }
       setN(v);
     }, 40);
     return () => clearInterval(iv);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

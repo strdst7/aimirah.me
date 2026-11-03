@@ -35,6 +35,27 @@ async function getJson<Row>(url: string, timeoutMs = 14000): Promise<Row[]> {
 }
 
 /**
+ * In-flight request cache.
+ *
+ * Several sections read the same datasets on first paint (Ticker + FuelSection
+ * both want `fuelprice`, Ticker + ForexSection both want
+ * `exchangerates_daily_1200`). Keying on the final URL collapses those into a
+ * single network call and keeps them collapsed during retries, which matters
+ * because the public API is rate limited (CONCERNS.md #19).
+ */
+const inFlight = new Map<string, Promise<unknown>>();
+
+function cachedJson<Row>(url: string, timeoutMs = 14000): Promise<Row[]> {
+  const existing = inFlight.get(url) as Promise<Row[]> | undefined;
+  if (existing) return existing;
+  const request = getJson<Row>(url, timeoutMs).finally(() => {
+    inFlight.delete(url);
+  });
+  inFlight.set(url, request);
+  return request;
+}
+
+/**
  * Fetch a data.gov.my catalogue dataset.
  * Server-side `filter` params are attempted first (per official docs);
  * if that request fails we retry unfiltered so callers can filter client-side.
@@ -42,12 +63,15 @@ async function getJson<Row>(url: string, timeoutMs = 14000): Promise<Row[]> {
 export async function fetchCatalogue<Row>(spec: QuerySpec): Promise<Row[]> {
   if (spec.filters && Object.keys(spec.filters).length > 0) {
     try {
-      return await getJson<Row>(buildUrl(spec, true));
-    } catch {
-      /* fall through to unfiltered pull */
+      return await cachedJson<Row>(buildUrl(spec, true));
+    } catch (error) {
+      // Server-side filtering is best-effort; fall back to an unfiltered pull
+      // so the caller can filter client-side. Warn rather than swallow so a
+      // persistent failure is visible in the console (CONCERNS.md #24).
+      console.warn(`[api] filtered request failed for "${spec.id}", retrying unfiltered:`, error);
     }
   }
-  return getJson<Row>(buildUrl(spec, false));
+  return cachedJson<Row>(buildUrl(spec, false));
 }
 
 export async function fetchJson<T>(url: string, timeoutMs = 16000): Promise<T> {
@@ -94,9 +118,6 @@ export function useAsyncData<T>(loader: () => Promise<T>) {
 }
 
 /* --------------------------- formatting --------------------------- */
-
-export const fmtRM = (v: number | null | undefined, dp = 2) =>
-  v == null || Number.isNaN(v) ? '--.--' : v.toFixed(dp);
 
 export const fmtRate = (v: number | null | undefined) => {
   if (v == null || Number.isNaN(v)) return '—';

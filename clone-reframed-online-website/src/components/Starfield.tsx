@@ -36,6 +36,11 @@ export default function Starfield() {
     let raf = 0;
     let last = 0;
     let cometTimer = 2500;
+    // Motion/visibility gating: honour prefers-reduced-motion by drawing a
+    // static frame, and stop looping while the tab is hidden (CONCERNS #8, #18).
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reduced = motionQuery.matches;
+    let hidden = document.visibilityState === "hidden";
 
     const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
 
@@ -80,7 +85,12 @@ export default function Starfield() {
     };
 
     const tick = (t: number) => {
-      const dt = Math.min(50, t - last);
+      if (hidden) {
+        raf = 0;
+        last = t;
+        return;
+      }
+      const dt = reduced ? 0 : Math.min(50, t - last);
       last = t;
       cometTimer -= dt;
       if (cometTimer <= 0) {
@@ -147,18 +157,35 @@ export default function Starfield() {
       }
 
       ctx.globalAlpha = 1;
-      raf = requestAnimationFrame(tick);
+      // Reduced motion: paint a single static frame instead of looping.
+      raf = reduced ? 0 : requestAnimationFrame(tick);
+    };
+
+    const onMotionChange = () => {
+      reduced = motionQuery.matches;
+      if (!raf && !hidden) raf = requestAnimationFrame(tick);
+    };
+    const onVisibility = () => {
+      hidden = document.visibilityState === "hidden";
+      if (!hidden && !raf) {
+        last = performance.now();
+        raf = requestAnimationFrame(tick);
+      }
     };
 
     resize();
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouse);
-    raf = requestAnimationFrame(tick);
+    motionQuery.addEventListener("change", onMotionChange);
+    document.addEventListener("visibilitychange", onVisibility);
+    if (!hidden) raf = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouse);
+      motionQuery.removeEventListener("change", onMotionChange);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 

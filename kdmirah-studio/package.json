@@ -1,14 +1,16 @@
 {
-  "name": "react-vite-tailwind",
+  "name": "@aimirah/studio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@aimirah/shared": "*",
     "clsx": "2.1.1",
     "react": "19.2.6",
     "react-dom": "19.2.6",
@@ -20,10 +22,13 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.1",
-    "esbuild": "^0.28.2",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
     "vite": "^7.3.7",
     "vite-plugin-singlefile": "2.3.0"
-  }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "description": "kdmirah.studio Opus 5.5 video archive"
 }

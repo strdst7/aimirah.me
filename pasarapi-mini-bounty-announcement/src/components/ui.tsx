@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { RefreshCw, TriangleAlert } from 'lucide-react';
 import { useInView } from '../hooks/useFx';
-import { cn } from '../utils/cn';
+import { cn } from '@aimirah/shared/cn';
 
 /* ------------------------------ Reveal ------------------------------ */
 export function Reveal({

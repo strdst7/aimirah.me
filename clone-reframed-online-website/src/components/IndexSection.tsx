@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { EXPERIMENTS } from "../lib/data";
+import { STANDALONE_PROJECTS } from "../lib/links";
 import { scrollToId } from "../lib/scroll";
 import ChapterIntro from "./ChapterIntro";
 
@@ -63,6 +64,10 @@ export default function IndexSection() {
               key={e.id}
               src={e.output.img}
               alt=""
+              width={1200}
+              height={1600}
+              loading="lazy"
+              decoding="async"
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
                 hovered === e.id ? "opacity-100" : "opacity-0"
               }`}
@@ -122,32 +127,21 @@ export default function IndexSection() {
           Separate sites from the kdmirah lab. Each opens its own deployed project.
         </p>
         <ul className="mt-10 border-t border-bone/10">
-          <li className="border-b border-bone/10">
-            <a
-              href="https://clone-string-tune-website-gold.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-5 py-6 text-bone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal md:gap-10"
-            >
-              <span className="font-mono text-xs text-signal">01</span>
-              <span className="font-display text-2xl uppercase group-hover:text-signal md:text-4xl">MI4Inc. Motion Study</span>
-              <span className="sr-only">(opens in a new tab)</span>
-              <ArrowUpRight size={20} aria-hidden className="ml-auto shrink-0" />
-            </a>
-          </li>
-          <li className="border-b border-bone/10">
-            <a
-              href="https://aimirah-mi4.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-5 py-6 text-bone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal md:gap-10"
-            >
-              <span className="font-mono text-xs text-signal">02</span>
-              <span className="font-display text-2xl uppercase group-hover:text-signal md:text-4xl">Aimirah Component Showcase</span>
-              <span className="sr-only">(opens in a new tab)</span>
-              <ArrowUpRight size={20} aria-hidden className="ml-auto shrink-0" />
-            </a>
-          </li>
+          {STANDALONE_PROJECTS.map((project) => (
+            <li className="border-b border-bone/10" key={project.index}>
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-5 py-6 text-bone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal md:gap-10"
+              >
+                <span className="font-mono text-xs text-signal">{project.index}</span>
+                <span className="font-display text-2xl uppercase group-hover:text-signal md:text-4xl">{project.title}</span>
+                <span className="sr-only">(opens in a new tab)</span>
+                <ArrowUpRight size={20} aria-hidden className="ml-auto shrink-0" />
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </section>
