@@ -4,9 +4,9 @@
  * Deployment targets (see README "Deployment"):
  * - aimirah.me            → clone-reframed-online-website (GitHub Pages, public/CNAME)
  * - mi4inc.com            → clone-string-tune-website (Vercel)
- * - aimirah.mixtape       → aimirah-mixtape
- * - kdmirah.studio        → kdmirah-studio
- * - pasarapi              → pasarapi-mini-bounty-announcement
+ * - pasarapi-mini-bounty-announcement.vercel.app → pasarapi-mini-bounty-announcement
+ * - kdmirah-studio.vercel.app → kdmirah-studio
+ * - aimirah-mixtape awaits a reachable public destination.
  *
  * Preview URLs are intentionally kept out of component bodies so a rotated
  * preview deployment only needs updating here (CONCERNS.md #7).
@@ -14,12 +14,17 @@
 export const STANDALONE_PROJECTS = [
   {
     index: "01",
+    title: "PASAR.DATA",
+    href: "https://pasarapi-mini-bounty-announcement.vercel.app/",
+  },
+  {
+    index: "02",
     title: "MI4Inc. Motion Study",
     href: "https://mi4inc.com",
   },
   {
-    index: "02",
-    title: "Aimirah Component Showcase",
-    href: "https://aimirah.mixtape",
+    index: "03",
+    title: "kdmirah Studio",
+    href: "https://kdmirah-studio.vercel.app/",
   },
 ] as const;
