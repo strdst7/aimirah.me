@@ -12,6 +12,7 @@ Deliver one vertical MVP: reconcile the older feature branch with remote `main` 
 
 ### Phase 1: Live standalone project links
 **Goal**: Visitors can find and open each reachable standalone project from aimirah.me without encountering an unresolved destination.
+**Mode:** mvp
 **Depends on**: Nothing (first phase)
 **Requirements**: LINK-01, LINK-02, LINK-03, LINK-04, LINK-05
 **Execution boundary**: First inspect branch differences and reconcile `fix/dependency-alerts` with remote `main` while preserving history (no force-push). Reuse `clone-reframed-online-website/src/components/IndexSection.tsx` and its `src/lib/links.ts` data from `main`; do not replace the section, add a second directory, move apps, or alter their deployments. Then use the checked destinations: `https://mi4inc.com` (redirects to `https://www.mi4inc.com/`), `https://kdmirah-studio.vercel.app/`, and `https://pasarapi-mini-bounty-announcement.vercel.app/`. Exclude `https://aimirah.mixtape/` until it resolves. Validate destinations and the primary site's rendered links before calling the phase complete.
