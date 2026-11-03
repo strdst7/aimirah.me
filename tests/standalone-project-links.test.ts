@@ -41,4 +41,12 @@ describe("standalone project links", () => {
     }
     expect(markup).not.toContain("aimirah.mixtape");
   });
+
+  it("shows the documented empty message without a link", () => {
+    mockedProjects.current = [];
+    const markup = renderToStaticMarkup(createElement(IndexSection));
+    expect(projectLinks(markup)).toHaveLength(0);
+    expect(markup).toContain("No live standalone projects yet");
+    expect(markup).toContain("Check back once a project is live.");
+  });
 });
