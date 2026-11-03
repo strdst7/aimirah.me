@@ -31,16 +31,16 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| LINK-01 | Unassigned | Pending |
-| LINK-02 | Unassigned | Pending |
-| LINK-03 | Unassigned | Pending |
-| LINK-04 | Unassigned | Pending |
-| LINK-05 | Unassigned | Pending |
+| LINK-01 | Phase 1 | Pending |
+| LINK-02 | Phase 1 | Pending |
+| LINK-03 | Phase 1 | Pending |
+| LINK-04 | Phase 1 | Pending |
+| LINK-05 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 5 total
-- Mapped to phases: 0
-- Unmapped: 5
+- Mapped to phases: 5
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-11-03*
