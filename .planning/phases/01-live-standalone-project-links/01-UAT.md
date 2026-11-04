@@ -4,7 +4,7 @@ phase: 01-live-standalone-project-links
 source:
   - 01-01-SUMMARY.md
 started: 2026-11-04T07:16:41+08:00
-updated: 2026-11-04T09:22:19+08:00
+updated: 2026-11-04T09:59:06+08:00
 ---
 
 ## Current Test
@@ -41,14 +41,14 @@ coverage_id: mobile-interaction
 expected: After a normal merge and deployment, aimirah.me shows the same three links in order. Visitors can open each live destination; no unresolved mixtape link appears.
 result: blocked
 blocked_by: release-build
-reason: Production still uses main; the feature branch is not deployed.
+reason: Vercel miii-aim rejected the feature-branch deploy with api-deployments-free-per-day (more than 100). Two earlier attempts returned Resource provisioning failed. Production still serves the old main build.
 coverage_id: live-deployment
 
 ## Evidence
 
 - Local Chromium measured 80–112px directory row heights at 320px and exposed full link names in its accessibility tree.
 - A prior `pass` answered a composite prompt. Separate user responses now cover mobile touch, keyboard navigation, and screen-reader names.
-- Production `aimirah.me` returned HTTP 200, but `origin/main` is still behind this feature branch. HTTP status does not show these links are deployed.
+- Production `aimirah.me` returned HTTP 200 but still renders Aimirah Component Showcase, not PASAR.DATA. Vercel deployment IDs `dpl_6arPCvwxVNre31cNMmveqb8SM29a` and `dpl_AvsG6GrvpDvTvDEB6CH7JLpyxdmF` returned `Resource provisioning failed`; a further attempt hit `api-deployments-free-per-day`. Git productionBranch remains `main`.
 
 ## Summary
 
