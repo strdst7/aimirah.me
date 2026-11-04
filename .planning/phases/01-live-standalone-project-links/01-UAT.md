@@ -4,15 +4,15 @@ phase: 01-live-standalone-project-links
 source:
   - 01-01-SUMMARY.md
 started: 2026-11-04T07:16:41+08:00
-updated: 2026-11-04T08:08:12+08:00
+updated: 2026-11-04T08:53:04+08:00
 ---
 
 ## Current Test
 
-number: 3
-name: Keyboard navigation
+number: 4
+name: Screen-reader names
 expected: |
-  Tab reaches the three project links in index order. Each has visible focus, and Enter opens its intended site in a new tab.
+  A screen reader announces each complete project title and new-tab notice, without announcing the decorative arrow.
 awaiting: user response
 
 ## Tests
@@ -31,7 +31,8 @@ coverage_id: mobile-interaction
 
 ### 3. Keyboard navigation
 expected: Tab reaches the three project links in index order. Each has visible focus, and Enter opens its intended site in a new tab.
-result: [pending]
+result: pass
+source: user
 coverage_id: mobile-interaction
 
 ### 4. Screen-reader names
@@ -55,9 +56,9 @@ coverage_id: live-deployment
 ## Summary
 
 total: 5
-passed: 2
+passed: 3
 issues: 0
-pending: 2
+pending: 1
 skipped: 0
 blocked: 1
 
