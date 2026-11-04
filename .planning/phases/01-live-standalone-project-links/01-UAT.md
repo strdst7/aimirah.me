@@ -4,15 +4,15 @@ phase: 01-live-standalone-project-links
 source:
   - 01-01-SUMMARY.md
 started: 2026-11-04T07:16:41+08:00
-updated: 2026-11-04T08:03:59+08:00
+updated: 2026-11-04T08:08:12+08:00
 ---
 
 ## Current Test
 
-number: 2
-name: Mobile touch navigation
+number: 3
+name: Keyboard navigation
 expected: |
-  At a narrow mobile width, all three project titles, indices, and arrows fit. Tap each row and check that its intended live site opens in a new tab.
+  Tab reaches the three project links in index order. Each has visible focus, and Enter opens its intended site in a new tab.
 awaiting: user response
 
 ## Tests
@@ -25,7 +25,8 @@ coverage_id: links
 
 ### 2. Mobile touch navigation
 expected: At a narrow mobile width, all three project titles, indices, and arrows fit. Tap each row and check that its intended live site opens in a new tab.
-result: [pending]
+result: pass
+source: user
 coverage_id: mobile-interaction
 
 ### 3. Keyboard navigation
@@ -54,9 +55,9 @@ coverage_id: live-deployment
 ## Summary
 
 total: 5
-passed: 1
+passed: 2
 issues: 0
-pending: 3
+pending: 2
 skipped: 0
 blocked: 1
 
