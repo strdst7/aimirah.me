@@ -1,19 +1,15 @@
 ---
-status: testing
+status: partial
 phase: 01-live-standalone-project-links
 source:
   - 01-01-SUMMARY.md
 started: 2026-11-04T07:16:41+08:00
-updated: 2026-11-04T08:53:04+08:00
+updated: 2026-11-04T09:22:19+08:00
 ---
 
 ## Current Test
 
-number: 4
-name: Screen-reader names
-expected: |
-  A screen reader announces each complete project title and new-tab notice, without announcing the decorative arrow.
-awaiting: user response
+[testing paused — production deployment required]
 
 ## Tests
 
@@ -37,7 +33,8 @@ coverage_id: mobile-interaction
 
 ### 4. Screen-reader names
 expected: A screen reader announces each complete project title and new-tab notice, without announcing the decorative arrow.
-result: [pending]
+result: pass
+source: user
 coverage_id: mobile-interaction
 
 ### 5. Production visitor flow
@@ -50,15 +47,15 @@ coverage_id: live-deployment
 ## Evidence
 
 - Local Chromium measured 80–112px directory row heights at 320px and exposed full link names in its accessibility tree.
-- A prior `pass` answered a composite mobile, keyboard, and screen-reader prompt. It did not identify which actions the user performed. Separate checks remain pending.
+- A prior `pass` answered a composite prompt. Separate user responses now cover mobile touch, keyboard navigation, and screen-reader names.
 - Production `aimirah.me` returned HTTP 200, but `origin/main` is still behind this feature branch. HTTP status does not show these links are deployed.
 
 ## Summary
 
 total: 5
-passed: 3
+passed: 4
 issues: 0
-pending: 1
+pending: 0
 skipped: 0
 blocked: 1
 
