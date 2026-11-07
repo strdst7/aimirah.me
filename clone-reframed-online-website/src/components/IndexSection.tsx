@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { EXPERIMENTS } from "../lib/data";
-import { KDMIRAH_PROJECTS, STANDALONE_PROJECTS } from "../lib/links";
+import { CREATIVE_GARAGE_PROJECTS, STANDALONE_PROJECTS } from "../lib/links";
 import { scrollToId } from "../lib/scroll";
 import ChapterIntro from "./ChapterIntro";
 
@@ -126,7 +126,7 @@ export default function IndexSection() {
         <p className="mt-3 max-w-xl font-sans text-sm text-bone/70">
           Separate sites from the kdmirah lab. Each opens its own deployed project.
         </p>
-        {STANDALONE_PROJECTS.length < 1 && KDMIRAH_PROJECTS.length < 1 ? (
+        {STANDALONE_PROJECTS.length < 1 && CREATIVE_GARAGE_PROJECTS.length < 1 ? (
           <p className="mt-10 font-sans text-sm text-bone/70">
             <strong className="block font-display text-2xl uppercase text-bone">No live standalone projects yet</strong>
             Check back once a project is live.
@@ -150,11 +150,11 @@ export default function IndexSection() {
             ))}
           </ul>
         ) : null}
-        {KDMIRAH_PROJECTS.length > 0 && (
+        {CREATIVE_GARAGE_PROJECTS.length > 0 && (
           <div className="mt-16">
-            <h4 className="font-display text-2xl uppercase text-bone md:text-3xl">kdmirah projects</h4>
+            <h4 className="font-display text-2xl uppercase text-bone md:text-3xl">Creative Garage</h4>
             <ul className="mt-6 border-t border-bone/10">
-              {KDMIRAH_PROJECTS.map((project) => (
+              {CREATIVE_GARAGE_PROJECTS.map((project) => (
                 <li className="border-b border-bone/10" key={project.href}>
                   <a
                     href={project.href}

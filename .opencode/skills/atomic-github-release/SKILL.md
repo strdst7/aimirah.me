@@ -1,11 +1,12 @@
 ---
 name: Atomic GitHub Release
-description: Publish reviewed repository changes as meaningful commits, push a branch, and merge a checked pull request.
+description: Publish each completed aimirah.me update through a checked pull request and production deployment unless instructed otherwise.
 ---
 
 # Atomic GitHub release
 
-Use this workflow when the user requests a GitHub push, pull request, or merge.
+For `aimirah.me`, run this workflow after each completed update unless the user requests local-only work.
+Use it when the user requests a GitHub push, pull request, merge, or deployment.
 
 1. Read the project instructions and run `git status --short --branch`.
 2. Fetch `origin` and inspect the branch diff against `origin/main`.
@@ -25,3 +26,8 @@ Use this workflow when the user requests a GitHub push, pull request, or merge.
 
 For `aimirah.me`, run `npm test`, the primary-site typecheck, and its build.
 The primary site lives in `clone-reframed-online-website`.
+For primary-site changes, deploy its built `dist` through the existing Vercel project.
+Check the linked project and domain owner before each deployment.
+Use a staged production deployment and check its content before promotion.
+Promote the checked deployment, then fetch `https://aimirah.me` and check the new content.
+Stop on authentication, CI, deployment, or live-site errors. Report the exact blocker.
