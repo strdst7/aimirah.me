@@ -59,7 +59,7 @@ jobs:
         run: npm run typecheck --workspace ${{ matrix.site }}
 
       - name: Build
-        run: npm run build --workspace ${{ matrix.site }}
+        run: npm run build --workspace ${{ matrix.site }} -- --configLoader runner
 
       - name: Check build output exists
         run: test -f ${{ matrix.site }}/dist/index.html
