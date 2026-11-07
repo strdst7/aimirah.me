@@ -28,3 +28,26 @@ export const STANDALONE_PROJECTS = [
     href: "https://kdmirah-studio.vercel.app/",
   },
 ] as const;
+
+export const KDMIRAH_PROJECTS = [
+  {
+    index: "01",
+    title: "Mirage",
+    href: "https://mirage-miii.vercel.app/",
+  },
+  {
+    index: "02",
+    title: "Nocturnal Dream",
+    href: "https://nocturnal-dream.vercel.app/",
+  },
+  {
+    index: "03",
+    title: "MI4Inc. Motion Study — Vercel",
+    href: "https://clone-string-tune-website-gold.vercel.app/",
+  },
+  {
+    index: "04",
+    title: "4IM/Flux",
+    href: "https://www.aimirah.dev/",
+  },
+] as const;
