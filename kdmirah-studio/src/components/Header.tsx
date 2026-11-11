@@ -17,6 +17,7 @@ const LANGUAGES = ["English", "Français", "Deutsch", "Español", "Português", 
 const NAV = [
   { label: "Videos", href: "#videos" },
   { label: "Skills", href: "#skills" },
+  { label: "Sections", href: "#sections" },
   { label: "Learn", href: "#faq" },
 ];
 

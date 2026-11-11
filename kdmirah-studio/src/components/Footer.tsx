@@ -4,6 +4,7 @@ import { GITHUB_STARS, SITE, TOTAL_VIDEOS } from "../lib/content";
 const LINKS = [
   { label: "Videos", href: "#videos" },
   { label: "Skills", href: "#skills" },
+  { label: "Sections", href: "#sections" },
   { label: "Learn", href: "#faq" },
   { label: "Archive", href: SITE.archiveUrl, external: true },
   { label: "Support", href: SITE.xUrl, external: true },

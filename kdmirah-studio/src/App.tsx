@@ -9,6 +9,7 @@ import { Faq } from "./components/Faq";
 import { ClosingCta, Footer } from "./components/Footer";
 import { AuthDialog, SkillDialog } from "./components/Dialogs";
 import { Toast } from "./components/Toast";
+import { SectionReferences } from "./components/SectionReferences";
 import {
   CATEGORY_BY_KEY,
   sortVideos,
@@ -154,6 +155,7 @@ export default function App() {
           onOpenSkill={(skill) => setActiveSkill(skill)}
         />
         <PopularSkills onOpenSkill={(skill) => setActiveSkill(skill)} onNotify={notify} />
+        <SectionReferences />
         <Faq />
         <ClosingCta />
       </main>
