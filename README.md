@@ -3,13 +3,13 @@
 **kdmirah — Digital Inspiration Lab.** Live at [aimirah.me](https://aimirah.me).
 
 This repository is a monorepo of **five independent sites** sharing one toolchain.
-The section below describes the primary site (`clone-reframed-online-website`);
+The section below describes the primary site (`-reframed-online-website`);
 see [Repository layout](#repository-layout) for the others.
 
 | Project | Purpose | Dev command | Deploy target |
 |---|---|---|---|
-| `clone-reframed-online-website` | kdmirah Digital Inspiration Lab (primary) | `npm run dev --workspace clone-reframed-online-website` | GitHub Pages → aimirah.me |
-| `clone-string-tune-website` | MI4Inc. motion study | `npm run dev --workspace clone-string-tune-website` | Vercel → mi4inc.com |
+| `-reframed-online-website` | kdmirah Digital Inspiration Lab (primary) | `npm run dev --workspace clone-reframed-online-website` | GitHub Pages → aimirah.me |
+| `-string-tune-website` | MI4Inc. motion study | `npm run dev --workspace clone-string-tune-website` | Vercel → mi4inc.com |
 | `aimirah-mixtape` | Component catalogue and CLI | `npm run dev --workspace aimirah-mixtape` | aimirah.mixtape |
 | `kdmirah-studio` | Opus 5.5 video archive | `npm run dev --workspace kdmirah-studio` | kdmirah.studio |
 | `pasarapi-mini-bounty-announcement` | PASAR.DATA Malaysia open-data dashboard | `npm run dev --workspace pasarapi-mini-bounty-announcement` | _not yet configured_ |
@@ -42,7 +42,7 @@ Each site's `vite.config.ts` and `tsconfig.json` are thin wrappers around
 
 ---
 
-## Primary site (`clone-reframed-online-website`)
+## Primary site (`-reframed-online-website`)
 
 A dark, editorial single-page site studying the space between what we see and what we make: four experiments, each pairing a raw source image with the work it provoked, compared through a draggable seam.
 
@@ -92,8 +92,8 @@ to a project (see `.planning/codebase/CONCERNS.md` #7).
 
 | Project | Domain | Host | Config |
 |---|---|---|---|
-| `clone-reframed-online-website` | `aimirah.me` | GitHub Pages | `public/CNAME` |
-| `clone-string-tune-website` | `mi4inc.com` | Vercel | Vercel project settings |
+| `-reframed-online-website` | `aimirah.me` | GitHub Pages | `public/CNAME` |
+| `-string-tune-website` | `mi4inc.com` | Vercel | Vercel project settings |
 | `aimirah-mixtape` | `aimirah.mixtape` | (not yet configured) | — |
 | `kdmirah-studio` | `kdmirah.studio` | (not yet configured) | — |
 | `pasarapi-mini-bounty-announcement` | (not yet configured) | (not yet configured) | — |
